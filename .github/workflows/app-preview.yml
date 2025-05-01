@@ -4,6 +4,12 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 
+# Add permissions to fix the "Resource not accessible by integration" error
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+
 jobs:
   validate-submission:
     runs-on: ubuntu-latest
