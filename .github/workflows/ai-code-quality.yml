@@ -5,7 +5,7 @@ on:
     types: [opened, synchronize, reopened]
   workflow_dispatch:
 
-# Add permissions to fix the "Resource not accessible by integration" error
+# Even with these permissions, we'll also use a PAT for backup
 permissions:
   contents: read
   pull-requests: write
@@ -174,7 +174,8 @@ jobs:
         if: always()
         uses: actions/github-script@v6
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          # Use a personal access token with proper permissions if available
+          github-token: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
           script: |
             const fs = require('fs');
             
@@ -189,9 +190,13 @@ jobs:
             
             const body = `# AI Code Quality Report\n\n${qualityReport}\n\n> This assessment was automatically generated to help reviewers evaluate the AI-generated code.\n\n> Note: This is an automated assessment and should be supplemented with human review.`;
             
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: body
-            }); 
+            try {
+              await github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: body
+              });
+            } catch (error) {
+              console.error('Failed to create comment:', error.message);
+            } 

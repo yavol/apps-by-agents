@@ -6,7 +6,7 @@ on:
   issue_comment:
     types: [created]
 
-# Add permissions to fix the "Resource not accessible by integration" error
+# Even with these permissions, we'll also use a PAT for backup
 permissions:
   contents: read
   pull-requests: write
@@ -25,7 +25,8 @@ jobs:
         id: check_pr
         uses: actions/github-script@v6
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          # Use a personal access token with proper permissions if available
+          github-token: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
           script: |
             const prBody = context.payload.pull_request.body || '';
             const aiMarkers = [
@@ -49,13 +50,18 @@ jobs:
               core.setOutput('is_authored_by_ai', 'false');
               console.log('PR does not appear to be authored by an AI agent');
               
-              // Comment on PR to remind about AI authorship
-              await github.rest.issues.createComment({
-                issue_number: context.issue.number,
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                body: `## AI Authorship Reminder ⚠️\n\nThis PR description does not clearly indicate that it was authored by an AI agent.\n\nIn this repository, all PRs should be created and described by AI agents, with humans only providing guidance.\n\nPlease update the PR description to include a clear statement that it was authored by an AI agent.`
-              });
+              try {
+                // Comment on PR to remind about AI authorship
+                await github.rest.issues.createComment({
+                  issue_number: context.issue.number,
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  body: `## AI Authorship Reminder ⚠️\n\nThis PR description does not clearly indicate that it was authored by an AI agent.\n\nIn this repository, all PRs should be created and described by AI agents, with humans only providing guidance.\n\nPlease update the PR description to include a clear statement that it was authored by an AI agent.`
+                });
+              } catch (error) {
+                console.error('Failed to create comment:', error.message);
+                // We'll continue execution even if commenting fails
+              }
               
               core.setFailed('PR does not appear to be authored by an AI agent');
             } else {
@@ -68,7 +74,8 @@ jobs:
         id: check_comment
         uses: actions/github-script@v6
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          # Use a personal access token with proper permissions if available
+          github-token: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
           script: |
             const comment = context.payload.comment.body || '';
             const commenter = context.payload.comment.user.login;
@@ -81,28 +88,36 @@ jobs:
               'AI assistant'
             ];
             
-            // PR submitter should be commenting as an AI
-            const pr = await github.rest.pulls.get({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              pull_number: context.payload.issue.number
-            });
-            
-            const prSubmitter = pr.data.user.login;
-            
-            // Only check comments from the PR submitter
-            if (commenter === prSubmitter) {
-              const hasAiMarker = aiMarkers.some(marker => 
-                comment.toLowerCase().includes(marker.toLowerCase())
-              );
+            try {
+              // PR submitter should be commenting as an AI
+              const pr = await github.rest.pulls.get({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                pull_number: context.payload.issue.number
+              });
               
-              if (!hasAiMarker && comment.length > 50) {  // Only check substantial comments
-                // Reply to remind about AI authorship
-                await github.rest.issues.createComment({
-                  issue_number: context.issue.number,
-                  owner: context.repo.owner,
-                  repo: context.repo.repo,
-                  body: `## AI Voice Reminder ⚠️\n\n@${commenter}, your comment does not appear to be written from the perspective of an AI agent.\n\nIn this repository, all contributions including comments should maintain the AI agent's voice.\n\nPlease ensure your comments reflect that they are coming from an AI agent.`
-                });
+              const prSubmitter = pr.data.user.login;
+              
+              // Only check comments from the PR submitter
+              if (commenter === prSubmitter) {
+                const hasAiMarker = aiMarkers.some(marker => 
+                  comment.toLowerCase().includes(marker.toLowerCase())
+                );
+                
+                if (!hasAiMarker && comment.length > 50) {  // Only check substantial comments
+                  try {
+                    // Reply to remind about AI authorship
+                    await github.rest.issues.createComment({
+                      issue_number: context.issue.number,
+                      owner: context.repo.owner,
+                      repo: context.repo.repo,
+                      body: `## AI Voice Reminder ⚠️\n\n@${commenter}, your comment does not appear to be written from the perspective of an AI agent.\n\nIn this repository, all contributions including comments should maintain the AI agent's voice.\n\nPlease ensure your comments reflect that they are coming from an AI agent.`
+                    });
+                  } catch (commentError) {
+                    console.error('Failed to create comment:', commentError.message);
+                  }
+                }
               }
+            } catch (error) {
+              console.error('Error checking PR authorship:', error.message);
             } 
