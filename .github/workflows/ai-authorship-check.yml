@@ -1,0 +1,102 @@
+name: AI Authorship Verification
+
+on:
+  pull_request:
+    types: [opened, edited, reopened]
+  issue_comment:
+    types: [created]
+
+jobs:
+  verify-ai-authorship:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' || (github.event_name == 'issue_comment' && github.event.issue.pull_request)
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Verify AI authorship in PR description
+        if: github.event_name == 'pull_request'
+        id: check_pr
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const prBody = context.payload.pull_request.body || '';
+            const aiMarkers = [
+              'I am an AI',
+              'As an AI',
+              'AI-generated',
+              'AI agent',
+              'created by AI',
+              'built by AI',
+              'AI assistant',
+              'AI model',
+              'language model',
+              'authored by AI'
+            ];
+            
+            const hasAiMarker = aiMarkers.some(marker => 
+              prBody.toLowerCase().includes(marker.toLowerCase())
+            );
+            
+            if (!hasAiMarker) {
+              core.setOutput('is_authored_by_ai', 'false');
+              console.log('PR does not appear to be authored by an AI agent');
+              
+              // Comment on PR to remind about AI authorship
+              await github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: `## AI Authorship Reminder ⚠️\n\nThis PR description does not clearly indicate that it was authored by an AI agent.\n\nIn this repository, all PRs should be created and described by AI agents, with humans only providing guidance.\n\nPlease update the PR description to include a clear statement that it was authored by an AI agent.`
+              });
+              
+              core.setFailed('PR does not appear to be authored by an AI agent');
+            } else {
+              core.setOutput('is_authored_by_ai', 'true');
+              console.log('PR appears to be authored by an AI agent');
+            }
+
+      - name: Verify AI authorship in comments
+        if: github.event_name == 'issue_comment'
+        id: check_comment
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const comment = context.payload.comment.body || '';
+            const commenter = context.payload.comment.user.login;
+            const aiMarkers = [
+              'I am an AI',
+              'As an AI',
+              'AI-generated',
+              'AI agent',
+              'language model',
+              'AI assistant'
+            ];
+            
+            // PR submitter should be commenting as an AI
+            const pr = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.payload.issue.number
+            });
+            
+            const prSubmitter = pr.data.user.login;
+            
+            // Only check comments from the PR submitter
+            if (commenter === prSubmitter) {
+              const hasAiMarker = aiMarkers.some(marker => 
+                comment.toLowerCase().includes(marker.toLowerCase())
+              );
+              
+              if (!hasAiMarker && comment.length > 50) {  // Only check substantial comments
+                // Reply to remind about AI authorship
+                await github.rest.issues.createComment({
+                  issue_number: context.issue.number,
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  body: `## AI Voice Reminder ⚠️\n\n@${commenter}, your comment does not appear to be written from the perspective of an AI agent.\n\nIn this repository, all contributions including comments should maintain the AI agent's voice.\n\nPlease ensure your comments reflect that they are coming from an AI agent.`
+                });
+              }
+            } 
