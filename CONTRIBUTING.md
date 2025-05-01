@@ -8,7 +8,7 @@ The repository follows this structure:
 
 ```
 /
-├── YYYY-MM-DD/          # Date of the workshop
+├── dd-mm-yyyy/          # Date of the workshop (day-month-year)
 │   └── username/        # GitHub username of the human collaborator
 │       └── app-name/    # AI-generated application
 ```
@@ -19,15 +19,15 @@ The repository follows this structure:
 
 2. **Create a Branch**: AI agent, create a new branch with the naming convention:
    ```
-   YYYY-MM-DD/username/app-name
+   dd-mm-yyyy/username/app-name
    ```
-   For example: `2025-05-15/dudutwizer/portfolio-management-app`
+   For example: `01-05-2025/dudutwizer/portfolio-app`
 
 3. **Generate and Add Your Application**: AI agent, you must:
    - Create the application code based on the task given by your human collaborator
    - Place your generated code in the corresponding directory:
    ```
-   YYYY-MM-DD/username/app-name/
+   dd-mm-yyyy/username/app-name/
    ```
    - Write all commit messages in your voice as an AI agent
 
@@ -35,7 +35,7 @@ The repository follows this structure:
    - Push your branch to GitHub
    - Create a PR to merge to the main branch
    - Write the PR description in your own voice
-   - Ensure your PR passes all status checks
+   - Ensure your PR passes the branch name validation check
    - Add a clear description of your application and how you built it
    - Respond to reviewer comments as needed
 

@@ -15,7 +15,7 @@ cd apps-by-agents
 
 # Initialize sparse-checkout
 git sparse-checkout init --cone
-git sparse-checkout set "README.md" ".github" ".gitignore" "BRANCH_PROTECTION.md" "SPARSE_CHECKOUT.md" "CONTRIBUTING.md"
+git sparse-checkout set "README.md" ".github" ".gitignore" "CONTRIBUTING.md" "SPARSE_CHECKOUT.md"
 git checkout main
 ```
 
@@ -25,19 +25,19 @@ AI agent, when you are ready to create a new app, instruct your human collaborat
 
 ```bash
 # Update the sparse-checkout patterns to include your specific directory
-git sparse-checkout add "YYYY-MM-DD/your-username/your-app-name"
+git sparse-checkout add "dd-mm-yyyy/your-username/your-app-name"
 
 # Create a new branch for your work
-git checkout -b YYYY-MM-DD/your-username/your-app-name
+git checkout -b dd-mm-yyyy/your-username/your-app-name
 
 # Now the AI agent can add files to the directory
-mkdir -p YYYY-MM-DD/your-username/your-app-name
+mkdir -p dd-mm-yyyy/your-username/your-app-name
 # ... AI agent creates application files ...
 
 # AI agent provides commit message and push instructions
-git add YYYY-MM-DD/your-username/your-app-name
+git add dd-mm-yyyy/your-username/your-app-name
 git commit -m "Add my autonomously created workshop app"
-git push -u origin YYYY-MM-DD/your-username/your-app-name
+git push -u origin dd-mm-yyyy/your-username/your-app-name
 ```
 
 ## Adding Another Workshop Project Later
@@ -49,10 +49,10 @@ AI agent, if you want to work on another project later, instruct your human coll
 git checkout main
 
 # Add the specific directory you want to work with
-git sparse-checkout add "YYYY-MM-DD/another-username/another-app-name"
+git sparse-checkout add "dd-mm-yyyy/another-username/another-app-name"
 
 # Create a new branch
-git checkout -b YYYY-MM-DD/your-username/your-new-app-name
+git checkout -b dd-mm-yyyy/your-username/your-new-app-name
 ```
 
 ## Common Issues

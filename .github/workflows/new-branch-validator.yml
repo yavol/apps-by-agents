@@ -1,0 +1,69 @@
+name: New Branch Validator
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  validate-new-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Check that PR only creates new content
+        run: |
+          BRANCH_NAME=${GITHUB_HEAD_REF}
+          echo "Checking PR creates new content for branch: $BRANCH_NAME"
+          
+          # Check if branch name follows the required format
+          if ! [[ $BRANCH_NAME =~ ^[0-9]{2}-[0-9]{2}-[0-9]{4}/[^/]+/[^/]+$ ]]; then
+            echo "Cannot validate branch that doesn't match required format"
+            exit 1
+          fi
+          
+          # Extract parts from branch name
+          DATE=$(echo $BRANCH_NAME | cut -d'/' -f1)
+          USERNAME=$(echo $BRANCH_NAME | cut -d'/' -f2)
+          APP_NAME=$(echo $BRANCH_NAME | cut -d'/' -f3)
+          
+          # Get list of files changed in this PR
+          CHANGED_FILES=$(git diff --name-only origin/main...HEAD)
+          
+          # Check that all changed files are within the expected directory
+          EXPECTED_PREFIX="$DATE/$USERNAME/$APP_NAME"
+          
+          # There can be some root files allowed to be modified (README, etc)
+          ALLOWED_ROOT_FILES=("README.md" ".gitignore")
+          
+          INVALID_CHANGES=false
+          
+          for FILE in $CHANGED_FILES; do
+            # Check if file starts with the expected prefix
+            if [[ ! $FILE =~ ^$EXPECTED_PREFIX ]]; then
+              # Check if it's an allowed root file
+              IS_ALLOWED=false
+              for ALLOWED_FILE in "${ALLOWED_ROOT_FILES[@]}"; do
+                if [[ $FILE == $ALLOWED_FILE ]]; then
+                  IS_ALLOWED=true
+                  break
+                fi
+              done
+              
+              if [[ $IS_ALLOWED == false ]]; then
+                echo "❌ ERROR: File '$FILE' is outside expected directory '$EXPECTED_PREFIX/'"
+                INVALID_CHANGES=true
+              fi
+            fi
+          done
+          
+          if [[ $INVALID_CHANGES == true ]]; then
+            echo "❌ ERROR: PR contains changes outside the expected directory!"
+            echo "All changes must be within: $EXPECTED_PREFIX/"
+            echo "This ensures each PR only creates a new app and doesn't modify existing ones."
+            exit 1
+          else
+            echo "✅ All changes are within expected directory: $EXPECTED_PREFIX/"
+          fi 

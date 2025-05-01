@@ -14,10 +14,11 @@ jobs:
       - name: Check branch naming convention
         run: |
           BRANCH_NAME=${GITHUB_HEAD_REF}
-          # Check if the branch follows the pattern YYYY-MM-DD/username/app-name
-          if ! [[ $BRANCH_NAME =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}/[^/]+/[^/]+$ ]]; then
-            echo "Branch naming doesn't follow the pattern YYYY-MM-DD/username/app-name"
+          # Check if the branch follows the pattern dd-mm-yyyy/username/app-name
+          if ! [[ $BRANCH_NAME =~ ^[0-9]{2}-[0-9]{2}-[0-9]{4}/[^/]+/[^/]+$ ]]; then
+            echo "Branch naming doesn't follow the pattern dd-mm-yyyy/username/app-name"
             echo "Your branch: $BRANCH_NAME"
+            echo "Example format: 01-05-2025/dudutwizer/portfolio-app"
             exit 1
           fi
 
