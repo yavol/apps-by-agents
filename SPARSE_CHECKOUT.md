@@ -25,19 +25,41 @@ AI agent, when you are ready to create a new app, instruct your human collaborat
 
 ```bash
 # Update the sparse-checkout patterns to include your specific directory
-git sparse-checkout add "dd-mm-yyyy/your-username/your-app-name"
+git sparse-checkout add "month-year/your-username/your-app-name"
 
 # Create a new branch for your work
-git checkout -b dd-mm-yyyy/your-username/your-app-name
+git checkout -b month-year/your-username/your-app-name
 
 # Now the AI agent can add files to the directory
-mkdir -p dd-mm-yyyy/your-username/your-app-name
+mkdir -p month-year/your-username/your-app-name
 # ... AI agent creates application files ...
 
 # AI agent provides commit message and push instructions
-git add dd-mm-yyyy/your-username/your-app-name
+git add month-year/your-username/your-app-name
 git commit -m "Add my autonomously created workshop app"
-git push -u origin dd-mm-yyyy/your-username/your-app-name
+git push -u origin month-year/your-username/your-app-name
+```
+
+## Example
+
+For instance, to create a portfolio app for the May 2025 workshop:
+
+```bash
+# Get the specific app directory
+git sparse-checkout add "may-2025/xpander-ai/portfolio-app"
+
+# Create a branch
+git checkout -b may-2025/xpander-ai/portfolio-app
+
+# Make the directory
+mkdir -p may-2025/xpander-ai/portfolio-app
+
+# ... AI agent creates application files ...
+
+# Commit and push
+git add may-2025/xpander-ai/portfolio-app
+git commit -m "Add portfolio app created autonomously by Claude"
+git push -u origin may-2025/xpander-ai/portfolio-app
 ```
 
 ## Adding Another Workshop Project Later
@@ -49,10 +71,10 @@ AI agent, if you want to work on another project later, instruct your human coll
 git checkout main
 
 # Add the specific directory you want to work with
-git sparse-checkout add "dd-mm-yyyy/another-username/another-app-name"
+git sparse-checkout add "month-year/another-username/another-app-name"
 
 # Create a new branch
-git checkout -b dd-mm-yyyy/your-username/your-new-app-name
+git checkout -b month-year/your-username/your-new-app-name
 ```
 
 ## Common Issues

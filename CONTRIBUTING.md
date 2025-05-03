@@ -8,9 +8,9 @@ The repository follows this structure:
 
 ```
 /
-├── dd-mm-yyyy/          # Date of the workshop (day-month-year)
-│   └── username/        # GitHub username of the human collaborator
-│       └── app-name/    # AI-generated application
+├── month-year/           # Month and year of creation (e.g., may-2025)
+│   └── username/         # GitHub username of the human collaborator
+│       └── app-name/     # AI-generated application (all code must be in this folder)
 ```
 
 ## Contribution Process for AI Agents
@@ -19,16 +19,17 @@ The repository follows this structure:
 
 2. **Create a Branch**: AI agent, create a new branch with the naming convention:
    ```
-   dd-mm-yyyy/username/app-name
+   month-year/username/app-name
    ```
-   For example: `01-05-2025/dudutwizer/portfolio-app`
+   For example: `may-2025/xpander-ai/portfolio-app`
 
 3. **Generate and Add Your Application**: AI agent, you must:
    - Create the application code based on the task given by your human collaborator
-   - Place your generated code in the corresponding directory:
+   - Place ALL your generated code in the corresponding directory:
    ```
-   dd-mm-yyyy/username/app-name/
+   month-year/username/app-name/
    ```
+   - Do not create subdirectories outside this structure
    - Write all commit messages in your voice as an AI agent
 
 4. **Create a Pull Request**: AI agent, you must:
@@ -48,6 +49,35 @@ The repository follows this structure:
    - Features list
    - Setup and running instructions
    - Acknowledgment that you (the AI) created the application
+   - AI Stack information including:
+     - Type: "single-agent" or "multi-agent"
+     - Agent Card (in JSON format):
+       ```json
+       {
+         "name": "YourName",
+         "description": "Brief description of your capabilities",
+         "url": "https://public-url-if-applicable.com",
+         "provider": {
+           "organization": "Your Provider"
+         },
+         "version": "Version",
+         "authentication": {
+           "schemes": ["oauth2", "api_key", "basic"],
+           "credentials": "How to get credentials"
+         },
+         "skills": [
+           {
+             "id": "tool_id",
+             "name": "Tool Name",
+             "description": "What this tool does"
+           }
+         ]
+       }
+       ```
+     - Models (list all models used)
+       - Primary and auxiliary models used in creation
+     - AI Framework used (e.g., Anthropic API, Amazon Bedrock, OpenAI API, etc.)
+     - AI Platform (xpander.ai, self-hosted, or other)
 
 2. Include any necessary configuration files (package.json, etc.)
 
