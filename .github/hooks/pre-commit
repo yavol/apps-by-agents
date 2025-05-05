@@ -1,0 +1,128 @@
+#!/bin/bash
+set -e
+
+echo "Running AI Apps by Agents pre-commit validation checks..."
+
+# Get the current branch name
+BRANCH_NAME=$(git symbolic-ref --short HEAD)
+echo "Current branch: $BRANCH_NAME"
+
+# Check if the branch follows the pattern month-year/username/app-name
+if ! [[ $BRANCH_NAME =~ ^[a-z]+-[0-9]{4}/[^/]+/[^/]+$ ]]; then
+  echo "❌ Branch naming doesn't follow the pattern month-year/username/app-name"
+  echo "Example: may-2025/xpander-ai/portfolio-app"
+  exit 1
+fi
+
+# Extract parts from branch name
+DATE=$(echo $BRANCH_NAME | cut -d'/' -f1)
+USERNAME=$(echo $BRANCH_NAME | cut -d'/' -f2)
+APP_NAME=$(echo $BRANCH_NAME | cut -d'/' -f3)
+
+echo "Date: $DATE"
+echo "Username: $USERNAME"
+echo "App name: $APP_NAME"
+
+# Check if the correct directory structure exists
+if [ ! -d "$DATE/$USERNAME/$APP_NAME" ]; then
+  echo "❌ Directory structure does not match the branch name."
+  echo "Expected: $DATE/$USERNAME/$APP_NAME"
+  exit 1
+fi
+
+# Check if README.md exists
+README_FILE="$DATE/$USERNAME/$APP_NAME/README.md"
+if [ ! -f "$README_FILE" ]; then
+  echo "❌ README.md is missing from the project directory"
+  exit 1
+fi
+
+# Check if README mentions it was created by an AI
+if ! grep -q -i "AI\|agent\|generated\|created" "$README_FILE"; then
+  echo "❌ README.md should acknowledge that the application was created by an AI agent"
+  exit 1
+fi
+
+# Check for required README sections
+MISSING_SECTIONS=""
+
+# Check AI Stack section exists
+if ! grep -q -i "## AI Stack" "$README_FILE"; then
+  MISSING_SECTIONS="$MISSING_SECTIONS\n- AI Stack section"
+fi
+
+# Check Type section
+if ! grep -q -i "### Type" "$README_FILE"; then
+  MISSING_SECTIONS="$MISSING_SECTIONS\n- Type section (single-agent or multi-agent)"
+fi
+
+# Check Agent Card section
+if ! grep -q -i "### Agent Card" "$README_FILE"; then
+  MISSING_SECTIONS="$MISSING_SECTIONS\n- Agent Card section"
+elif ! grep -q -i '```json.*"name".*"skills"' "$README_FILE"; then
+  MISSING_SECTIONS="$MISSING_SECTIONS\n- Agent Card JSON format with name and skills fields"
+fi
+
+# Check Models section
+if ! grep -q -i "### Models" "$README_FILE"; then
+  MISSING_SECTIONS="$MISSING_SECTIONS\n- Models section"
+fi
+
+# Check Framework section
+if ! grep -q -i "### AI Framework" "$README_FILE" && ! grep -q -i "framework" "$README_FILE"; then
+  MISSING_SECTIONS="$MISSING_SECTIONS\n- AI Framework section"
+fi
+
+# Check Platform section
+if ! grep -q -i "### AI Platform" "$README_FILE" && ! grep -q -i "platform\|xpander\|self-hosted" "$README_FILE"; then
+  MISSING_SECTIONS="$MISSING_SECTIONS\n- AI Platform section"
+fi
+
+# If any required sections are missing, fail validation
+if [ ! -z "$MISSING_SECTIONS" ]; then
+  echo "❌ README.md is missing the following required sections:$MISSING_SECTIONS"
+  echo "Please check the README.md template for formatting guidelines."
+  exit 1
+fi
+
+# Get list of files that will be committed
+CHANGED_FILES=$(git diff --cached --name-only)
+
+# Check that all changed files are within the expected directory
+EXPECTED_PREFIX="$DATE/$USERNAME/$APP_NAME"
+
+# There can be some root files allowed to be modified (README, etc)
+ALLOWED_ROOT_FILES=("README.md" ".gitignore" "CONTRIBUTING.md" "SPARSE_CHECKOUT.md")
+
+INVALID_CHANGES=false
+INVALID_FILES=""
+
+for FILE in $CHANGED_FILES; do
+  # Check if file starts with the expected prefix
+  if [[ ! $FILE =~ ^$EXPECTED_PREFIX ]]; then
+    # Check if it's an allowed root file
+    IS_ALLOWED=false
+    for ALLOWED_FILE in "${ALLOWED_ROOT_FILES[@]}"; do
+      if [[ $FILE == $ALLOWED_FILE ]]; then
+        IS_ALLOWED=true
+        break
+      fi
+    done
+    
+    if [[ $IS_ALLOWED == false ]]; then
+      echo "File '$FILE' is outside expected directory '$EXPECTED_PREFIX/'"
+      INVALID_CHANGES=true
+      INVALID_FILES="$INVALID_FILES\n- $FILE"
+    fi
+  fi
+done
+
+if [[ $INVALID_CHANGES == true ]]; then
+  echo "❌ Commit contains changes outside the expected directory '$EXPECTED_PREFIX/'!"
+  echo "All changes must be within your app directory."
+  echo "Invalid files:$INVALID_FILES"
+  exit 1
+fi
+
+echo "✅ All validation checks passed!"
+exit 0 
