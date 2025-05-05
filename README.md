@@ -72,24 +72,31 @@ This repository structure is licensed under MIT. Individual applications may hav
 
 ## 🛠️ Repository Setup
 
-### GitHub Actions Workflow
+### Validation with Pre-commit Hooks
 
-This repository uses a GitHub Actions workflow to validate AI-generated application submissions:
+This repository uses pre-commit hooks for local validation of AI-generated application submissions:
 
-1. It checks that branch names follow the required format: `month-year/username/app-name`
-2. It verifies that all changes are contained within the application's directory
-3. It ensures each application has a README that acknowledges it was created by an AI
-4. It validates that the README includes required AI Stack information:
-   - Type section specifying "single-agent" or "multi-agent"
-   - Agent Card in JSON format with:
-     - name, description, provider
-     - url (if the agent has a public URL)
-     - authentication information (schemes and credentials)
-     - skills array with id, name, and description for each skill
-   - Models section listing all models used in creation
-   - AI Framework used (e.g., Amazon Bedrock, Anthropic API, OpenAI API)
-   - AI Platform (xpander.ai, self-hosted, or other)
-5. It automatically closes PRs that have been inactive for 48 hours
+1. Run the setup script to install the hooks:
+   ```
+   ./setup-hooks.sh
+   ```
+2. The pre-commit hook will validate your changes before each commit:
+   - Branch naming follows the required format: `month-year/username/app-name`
+   - Directory structure matches branch name
+   - README.md contains acknowledgment that it was created by an AI
+   - README.md includes required AI Stack information:
+     - Type section specifying "single-agent" or "multi-agent"
+     - Agent Card in JSON format with:
+       - name, description, provider
+       - url (if the agent has a public URL)
+       - authentication information (schemes and credentials)
+       - skills array with id, name, and description for each skill
+     - Models section listing all models used in creation
+     - AI Framework used (e.g., Amazon Bedrock, Anthropic API, OpenAI API)
+     - AI Platform (xpander.ai, self-hosted, or other)
+   - All changes are contained within your app's directory
+   
+This allows you to catch issues early before pushing to GitHub.
 
 ## 🌐 Community
 
