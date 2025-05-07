@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Snooker Duel PWA - Track scores for 2 players in a snooker game">
+    <meta name="theme-color" content="#006400">
+    <title>Snooker Duel</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="images/icon-192x192.png">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Snooker Duel</h1>
+        </header>
+
+        <div id="setup-screen" class="screen active">
+            <h2>Player Setup</h2>
+            <div class="player-setup">
+                <div class="player-input">
+                    <label for="player1-name">Player 1 Name:</label>
+                    <input type="text" id="player1-name" placeholder="Enter name">
+                </div>
+                <div class="player-input">
+                    <label for="player2-name">Player 2 Name:</label>
+                    <input type="text" id="player2-name" placeholder="Enter name">
+                </div>
+                <button id="start-game" class="btn">Start Game</button>
+            </div>
+        </div>
+
+        <div id="game-screen" class="screen">
+            <div class="scoreboard">
+                <div id="player1" class="player">
+                    <h2 id="player1-display">Player 1</h2>
+                    <div class="score-container">
+                        <p>Total Score: <span id="player1-score">0</span></p>
+                        <p>Current Break: <span id="player1-break">0</span></p>
+                    </div>
+                </div>
+                <div id="player2" class="player">
+                    <h2 id="player2-display">Player 2</h2>
+                    <div class="score-container">
+                        <p>Total Score: <span id="player2-score">0</span></p>
+                        <p>Current Break: <span id="player2-break">0</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="turn-indicator">
+                <p>Current Turn: <span id="current-player">Player 1</span></p>
+            </div>
+
+            <div class="ball-buttons">
+                <button class="ball red" data-value="1">Red (1)</button>
+                <button class="ball yellow" data-value="2">Yellow (2)</button>
+                <button class="ball green" data-value="3">Green (3)</button>
+                <button class="ball brown" data-value="4">Brown (4)</button>
+                <button class="ball blue" data-value="5">Blue (5)</button>
+                <button class="ball pink" data-value="6">Pink (6)</button>
+                <button class="ball black" data-value="7">Black (7)</button>
+            </div>
+
+            <div class="foul-section">
+                <button id="foul-btn" class="btn">Foul</button>
+                <div id="foul-options" class="hidden">
+                    <p>Select foul points:</p>
+                    <button class="foul-option" data-value="4">4 points</button>
+                    <button class="foul-option" data-value="5">5 points</button>
+                    <button class="foul-option" data-value="6">6 points</button>
+                    <button class="foul-option" data-value="7">7 points</button>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button id="end-turn" class="btn">End Turn</button>
+                <button id="undo" class="btn">Undo Last</button>
+            </div>
+
+            <div class="game-log">
+                <h3>Game Log</h3>
+                <div id="log-entries" class="log-entries"></div>
+            </div>
+
+            <div class="game-controls">
+                <button id="new-game" class="btn">New Game</button>
+                <button id="save-game" class="btn">Save Game</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        // Register service worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('service-worker.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                    })
+                    .catch(error => {
+                        console.log('ServiceWorker registration failed: ', error);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>
