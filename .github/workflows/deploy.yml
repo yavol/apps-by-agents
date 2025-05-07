@@ -27,8 +27,13 @@ jobs:
             echo "    <li><a href=\"$href\" title=\"$title\">$href</a></li>"
           done)
 
-          # Render and overwrite ./projects.html
-          sed "s|{{links}}|$LINKS|" projects.html > projects.tmp.html && mv projects.tmp.html projects.html
+          # Safely inject using awk — preserves formatting and avoids sed errors
+          awk -v links="$LINKS" '
+            /{{links}}/ {
+              gsub("{{links}}", links)
+            }
+            { print }
+          ' projects.html > projects.tmp.html && mv projects.tmp.html projects.html
 
       - name: Deploy to AWS S3 + CloudFront
         uses: lbertenasco/s3-deploy@v1
