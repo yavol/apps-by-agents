@@ -22,21 +22,18 @@ jobs:
         run: |
           LINKS=$(find . -type f -name index.html ! -path "./index.html" | while read path; do
             dir=$(dirname "$path")
-            app_name=$(basename "$dir")
-            committer=$(git log --diff-filter=A --follow --format="%an" -- "$path" | tail -1 || echo "unknown")
-            committer_slug=$(echo "$committer" | tr '[:upper:]' '[:lower:]' | tr ' ' '-')
-            label="xpander-${committer_slug}/${app_name}"
+            title=$(basename "$dir")
             href="${dir#./}/"
-            echo "    <li><a href=\"$href\" title=\"$label\">$label</a></li>"
+            echo "    <li><a href=\"$href\" title=\"$title\">$href</a></li>"
           done)
-      
+
+          # Safely inject using awk — preserves formatting and avoids sed errors
           awk -v links="$LINKS" '
             /{{links}}/ {
               gsub("{{links}}", links)
             }
             { print }
           ' projects.html > projects.tmp.html && mv projects.tmp.html projects.html
-      
 
       - name: Deploy to AWS S3 + CloudFront
         uses: lbertenasco/s3-deploy@v1
