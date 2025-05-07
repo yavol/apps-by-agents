@@ -1,0 +1,8 @@
+This is a placeholder file for the images directory.
+
+In a real implementation, this directory would contain:
+- icon-192x192.png
+- icon-512x512.png
+
+These image files would be actual PNG images for the PWA icons.
+For this demonstration, we're using this placeholder instead of binary image files.
