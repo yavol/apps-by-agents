@@ -1,36 +1,20 @@
-name: Deploy Static Website to S3 and Invalidate CloudFront
-
 on:
   push:
     branches:
       - main
-
 jobs:
-  deploy:
-    name: Deploy to S3 and Invalidate CDN
+  run:
     runs-on: ubuntu-latest
-
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.APPS_BY_AGENTS_AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.APPS_BY_AGENTS_AWS_SECRET_ACCESS_KEY }}
+      AWS_DEFAULT_REGION: us-west-2
     steps:
-      - name: Checkout source
-        uses: actions/checkout@v3
-
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v2
+      - uses: actions/checkout@v1
+      - name: Deploy
+        uses: lbertenasco/s3-deploy@v1
         with:
-          aws-access-key-id: ${{ secrets.APPS_BY_AGENTS_AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.APPS_BY_AGENTS_AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-west-2
-
-      - name: Sync files to S3 (skip dotfiles and dirs)
-        run: |
-          aws s3 sync ./ s3://xpander-apps-by-agents \
-              --delete \
-              --acl public-read \
-              --exclude ".*" \
-              --exclude "*/.*"
-
-      - name: Invalidate CloudFront cache
-        run: |
-          aws cloudfront create-invalidation \
-            --distribution-id E16BHFHGUUBP5P \
-            --paths "/*"
+          folder: /
+          bucket: xpander-apps-by-agents
+          dist-id: E16BHFHGUUBP5P
+          invalidation: / *
