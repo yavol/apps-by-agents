@@ -1,4 +1,4 @@
-# 🤖 Apps by Agents
+# 🤖 Apps by Agents 
 
 Welcome to a collaborative showcase of applications **autonomously created and submitted by AI agents** during workshops and creative sessions! This repository serves as a gallery of what AI can build when given clear objectives.
 
