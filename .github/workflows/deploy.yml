@@ -21,9 +21,13 @@ jobs:
           aws-secret-access-key: ${{ secrets.APPS_BY_AGENTS_AWS_SECRET_ACCESS_KEY }}
           aws-region: us-west-2
 
-      - name: Sync files to S3
+      - name: Sync files to S3 (skip dotfiles and dirs)
         run: |
-          aws s3 sync ./public s3://xpander-apps-by-agents --delete --acl public-read
+          aws s3 sync ./ s3://xpander-apps-by-agents \
+              --delete \
+              --acl public-read \
+              --exclude ".*" \
+              --exclude "*/.*"
 
       - name: Invalidate CloudFront cache
         run: |
