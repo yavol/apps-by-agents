@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#4CAF50">
+    <meta name="description" content="Habit Tracker with Calendar Heatmap">
+    <title>Habit Heatmap Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="icons/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+</head>
+<body>
+    <header>
+        <h1>Habit Heatmap Tracker</h1>
+    </header>
+
+    <main>
+        <section class="habit-form">
+            <h2>Add New Habit</h2>
+            <form id="habit-form">
+                <div class="form-group">
+                    <label for="habit-name">Habit Name:</label>
+                    <input type="text" id="habit-name" required placeholder="e.g., Meditation">
+                </div>
+                <div class="form-group">
+                    <label for="habit-description">Description (optional):</label>
+                    <textarea id="habit-description" placeholder="Brief description of your habit"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="habit-color">Color:</label>
+                    <input type="color" id="habit-color" value="#4CAF50">
+                </div>
+                <button type="submit" class="btn">Add Habit</button>
+            </form>
+        </section>
+
+        <section class="habits-list">
+            <h2>Your Habits</h2>
+            <div id="habits-container">
+                <!-- Habits will be dynamically added here -->
+                <p id="no-habits-message">No habits added yet. Create your first habit above!</p>
+            </div>
+        </section>
+
+        <section class="habit-details hidden" id="habit-details">
+            <div class="habit-details-header">
+                <h2 id="detail-habit-name">Habit Name</h2>
+                <div class="habit-actions">
+                    <button id="edit-habit" class="btn btn-small">Edit</button>
+                    <button id="delete-habit" class="btn btn-small btn-danger">Delete</button>
+                </div>
+            </div>
+            <p id="detail-habit-description">Description</p>
+            
+            <div class="habit-stats">
+                <div class="stat">
+                    <span class="stat-label">Current Streak:</span>
+                    <span id="current-streak" class="stat-value">0 days</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Longest Streak:</span>
+                    <span id="longest-streak" class="stat-value">0 days</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Completion Rate:</span>
+                    <span id="completion-rate" class="stat-value">0%</span>
+                </div>
+            </div>
+            
+            <div class="heatmap-container">
+                <h3>Activity Heatmap</h3>
+                <div class="heatmap-controls">
+                    <button id="prev-month" class="btn btn-small">◀ Prev</button>
+                    <span id="current-month-year">May 2025</span>
+                    <button id="next-month" class="btn btn-small">Next ▶</button>
+                </div>
+                <div id="heatmap" class="heatmap"></div>
+            </div>
+        </section>
+    </main>
+
+    <div id="edit-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Edit Habit</h2>
+            <form id="edit-habit-form">
+                <div class="form-group">
+                    <label for="edit-habit-name">Habit Name:</label>
+                    <input type="text" id="edit-habit-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-habit-description">Description:</label>
+                    <textarea id="edit-habit-description"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="edit-habit-color">Color:</label>
+                    <input type="color" id="edit-habit-color">
+                </div>
+                <button type="submit" class="btn">Save Changes</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="confirmation-modal" class="modal">
+        <div class="modal-content">
+            <h2>Confirm Deletion</h2>
+            <p>Are you sure you want to delete this habit? All tracking data will be lost.</p>
+            <div class="modal-actions">
+                <button id="confirm-delete" class="btn btn-danger">Delete</button>
+                <button id="cancel-delete" class="btn">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Habit Heatmap Tracker &copy; 2025</p>
+    </footer>
+
+    <script src="app.js"></script>
+    <script>
+        // Register service worker for PWA
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('service-worker.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                    })
+                    .catch(error => {
+                        console.log('ServiceWorker registration failed: ', error);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>

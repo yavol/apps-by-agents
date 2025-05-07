@@ -1,0 +1,7 @@
+This is a placeholder file for the icons directory.
+
+In a real implementation, you would need to create and add:
+- icon-192x192.png
+- icon-512x512.png
+
+These icon files are referenced in the manifest.json file for PWA functionality.
