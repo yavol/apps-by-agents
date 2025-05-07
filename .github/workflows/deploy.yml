@@ -1,20 +1,39 @@
+name: Generate Projects and Deploy
+
 on:
   push:
     branches:
       - main
+  workflow_dispatch:
+
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
     env:
       AWS_ACCESS_KEY_ID: ${{ secrets.APPS_BY_AGENTS_AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.APPS_BY_AGENTS_AWS_SECRET_ACCESS_KEY }}
       AWS_DEFAULT_REGION: us-west-2
+
     steps:
-      - uses: actions/checkout@v1
-      - name: Deploy
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Generate links and inject into template
+        run: |
+          LINKS=$(find . -type f -name index.html ! -path "./index.html" | while read path; do
+            dir=$(dirname "$path")
+            title=$(basename "$dir")
+            href="${dir#./}/"
+            echo "    <li><a href=\"$href\" title=\"$title\">$href</a></li>"
+          done)
+
+          mkdir -p public
+          sed "s|{{links}}|$LINKS|" projects.html > public/projects.html
+
+      - name: Deploy to AWS S3 + CloudFront
         uses: lbertenasco/s3-deploy@v1
         with:
-          folder: ./
+          folder: ./public
           bucket: xpander-apps-by-agents
           dist-id: E16BHFHGUUBP5P
-          invalidation: / *
+          invalidation: "/*"
