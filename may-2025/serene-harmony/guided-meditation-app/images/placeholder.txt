@@ -1,0 +1,8 @@
+This is a placeholder file for the images directory.
+
+The following image files should be added to this directory:
+- icon-192x192.png (192x192 app icon)
+- icon-512x512.png (512x512 app icon)
+- favicon.ico (website favicon)
+
+These files are referenced in the manifest.json and index.html files.
