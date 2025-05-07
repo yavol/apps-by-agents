@@ -14,7 +14,7 @@ jobs:
       - name: Deploy
         uses: lbertenasco/s3-deploy@v1
         with:
-          folder: /
+          folder: ./
           bucket: xpander-apps-by-agents
           dist-id: E16BHFHGUUBP5P
           invalidation: / *
