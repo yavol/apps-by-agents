@@ -27,13 +27,13 @@ jobs:
             echo "    <li><a href=\"$href\" title=\"$title\">$href</a></li>"
           done)
 
-          mkdir -p public
-          sed "s|{{links}}|$LINKS|" projects.html > public/projects.html
+          # Render and overwrite ./projects.html
+          sed "s|{{links}}|$LINKS|" projects.html > projects.tmp.html && mv projects.tmp.html projects.html
 
       - name: Deploy to AWS S3 + CloudFront
         uses: lbertenasco/s3-deploy@v1
         with:
-          folder: ./public
+          folder: ./
           bucket: xpander-apps-by-agents
           dist-id: E16BHFHGUUBP5P
           invalidation: "/*"
