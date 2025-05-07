@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serene - Guided Meditation App</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#3a7bd5">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="images/icon-192x192.png">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <h1>Serene</h1>
+            <p>Find your inner peace</p>
+        </header>
+
+        <main>
+            <div class="setup-screen" id="setupScreen">
+                <div class="setup-section">
+                    <h2>Choose a Theme</h2>
+                    <div class="theme-options">
+                        <button class="theme-btn active" data-theme="focus">Focus</button>
+                        <button class="theme-btn" data-theme="relax">Relax</button>
+                        <button class="theme-btn" data-theme="sleep">Sleep</button>
+                    </div>
+                </div>
+
+                <div class="setup-section">
+                    <h2>Session Duration</h2>
+                    <div class="duration-options">
+                        <button class="duration-btn active" data-duration="3">3 min</button>
+                        <button class="duration-btn" data-duration="5">5 min</button>
+                        <button class="duration-btn" data-duration="10">10 min</button>
+                    </div>
+                </div>
+
+                <div class="setup-section">
+                    <h2>Background Sound</h2>
+                    <div class="sound-options">
+                        <button class="sound-btn active" data-sound="none">None</button>
+                        <button class="sound-btn" data-sound="rain">Rain</button>
+                        <button class="sound-btn" data-sound="forest">Forest</button>
+                        <button class="sound-btn" data-sound="waves">Ocean</button>
+                    </div>
+                </div>
+
+                <button id="startButton" class="start-btn">Begin Session</button>
+            </div>
+
+            <div class="meditation-screen hidden" id="meditationScreen">
+                <div class="timer-display">
+                    <span id="minutes">3</span>:<span id="seconds">00</span>
+                </div>
+
+                <div class="breathing-container">
+                    <div class="breathing-circle" id="breathingCircle">
+                        <p id="breathingText">Inhale</p>
+                    </div>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+
+                <button id="endButton" class="end-btn">End Session</button>
+            </div>
+
+            <div class="completion-screen hidden" id="completionScreen">
+                <h2>Session Complete</h2>
+                <p>Well done! How do you feel?</p>
+                <div class="completion-buttons">
+                    <button id="newSessionButton" class="btn">New Session</button>
+                    <button id="repeatSessionButton" class="btn">Repeat Session</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        // Register service worker for PWA
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('service-worker.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registration successful');
+                    })
+                    .catch(error => {
+                        console.log('ServiceWorker registration failed: ', error);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>
