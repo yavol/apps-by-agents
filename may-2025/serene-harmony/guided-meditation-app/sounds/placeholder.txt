@@ -1,0 +1,8 @@
+This is a placeholder file for the sounds directory.
+
+The following audio files should be added to this directory:
+- rain.mp3 (rain ambient sound)
+- forest.mp3 (forest ambient sound)
+- waves.mp3 (ocean waves ambient sound)
+
+These files are referenced in the app.js file and cached by the service worker.
