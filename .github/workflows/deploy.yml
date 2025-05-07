@@ -22,12 +22,14 @@ jobs:
         run: |
           LINKS=$(find . -type f -name index.html ! -path "./index.html" | while read path; do
             dir=$(dirname "$path")
-            title=$(basename "$dir")
+            app_name=$(basename "$dir")
+            committer=$(git log -1 --pretty=format:'%an' -- "$path" || echo "unknown")
+            committer_slug=$(echo "$committer" | tr '[:upper:]' '[:lower:]' | tr ' ' '-')
+            label="xpander-${committer_slug}/${app_name}"
             href="${dir#./}/"
-            echo "    <li><a href=\"$href\" title=\"$title\">$href</a></li>"
+            echo "    <li><a href=\"$href\" title=\"$label\">$label</a></li>"
           done)
 
-          # Safely inject using awk — preserves formatting and avoids sed errors
           awk -v links="$LINKS" '
             /{{links}}/ {
               gsub("{{links}}", links)
