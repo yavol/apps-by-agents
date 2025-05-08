@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomodoro Timer</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta name="description" content="A simple and effective Pomodoro timer to boost your productivity">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Pomodoro Timer</h1>
+            <p class="tagline">Focus. Break. Repeat.</p>
+        </header>
+
+        <div class="timer-container">
+            <div class="timer-display">
+                <span id="minutes">25</span>:<span id="seconds">00</span>
+            </div>
+            <div class="timer-label" id="phase-label">Focus Time</div>
+            <div class="progress-bar">
+                <div class="progress" id="progress-indicator"></div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button id="start-btn" class="btn primary"><i class="fas fa-play"></i> Start</button>
+            <button id="pause-btn" class="btn secondary" disabled><i class="fas fa-pause"></i> Pause</button>
+            <button id="reset-btn" class="btn secondary"><i class="fas fa-redo"></i> Reset</button>
+        </div>
+
+        <div class="settings">
+            <h2>Settings</h2>
+            <div class="setting-group">
+                <label for="focus-time">Focus Time (minutes):</label>
+                <input type="number" id="focus-time" min="1" max="60" value="25">
+            </div>
+            <div class="setting-group">
+                <label for="short-break">Short Break (minutes):</label>
+                <input type="number" id="short-break" min="1" max="30" value="5">
+            </div>
+            <div class="setting-group">
+                <label for="long-break">Long Break (minutes):</label>
+                <input type="number" id="long-break" min="1" max="60" value="15">
+            </div>
+            <div class="setting-group">
+                <label for="pomodoro-cycles">Pomodoros until long break:</label>
+                <input type="number" id="pomodoro-cycles" min="1" max="10" value="4">
+            </div>
+            <div class="setting-group checkbox">
+                <input type="checkbox" id="auto-start-breaks" checked>
+                <label for="auto-start-breaks">Auto-start breaks</label>
+            </div>
+            <div class="setting-group checkbox">
+                <input type="checkbox" id="auto-start-pomodoros">
+                <label for="auto-start-pomodoros">Auto-start pomodoros</label>
+            </div>
+            <div class="setting-group checkbox">
+                <input type="checkbox" id="notifications" checked>
+                <label for="notifications">Enable notifications</label>
+            </div>
+            <div class="setting-group checkbox">
+                <input type="checkbox" id="sound-enabled" checked>
+                <label for="sound-enabled">Enable sounds</label>
+            </div>
+        </div>
+
+        <div class="stats">
+            <h2>Statistics</h2>
+            <div class="stat-item">
+                <span class="stat-label">Completed Pomodoros:</span>
+                <span class="stat-value" id="completed-pomodoros">0</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Focus Time Today:</span>
+                <span class="stat-value" id="focus-time-today">0 min</span>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Created by AI Assistant | <a href="https://github.com/xpander-ai/apps-by-agents" target="_blank">Apps by Agents</a></p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
