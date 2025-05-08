@@ -1,0 +1,822 @@
+/* Base Styles */
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #c0392b;
+    --accent-color: #f39c12;
+    --light-color: #ecf0f1;
+    --dark-color: #2c3e50;
+    --text-color: #333;
+    --text-light: #777;
+    --font-primary: 'Roboto', sans-serif;
+    --font-secondary: 'Playfair Display', serif;
+    --transition: all 0.3s ease;
+    --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    --border-radius: 5px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-primary);
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: #fff;
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+    transition: var(--transition);
+}
+
+a:hover {
+    color: var(--secondary-color);
+}
+
+ul {
+    list-style: none;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.section-title {
+    font-family: var(--font-secondary);
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: var(--primary-color);
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background-color: var(--secondary-color);
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: var(--transition);
+    font-weight: 600;
+    text-align: center;
+}
+
+.btn:hover {
+    background-color: var(--secondary-color);
+    color: #fff;
+    transform: translateY(-3px);
+}
+
+.btn-primary {
+    background-color: var(--secondary-color);
+}
+
+.btn-primary:hover {
+    background-color: #a93226;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    border: 2px solid var(--light-color);
+    color: var(--light-color);
+}
+
+.btn-secondary:hover {
+    background-color: var(--light-color);
+    color: var(--primary-color);
+}
+
+/* Header Styles */
+header {
+    background-color: #fff;
+    box-shadow: var(--shadow);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 15px 0;
+    transition: var(--transition);
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo h1 {
+    font-family: var(--font-secondary);
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+}
+
+.logo i {
+    margin-right: 10px;
+    color: var(--secondary-color);
+}
+
+nav ul {
+    display: flex;
+    align-items: center;
+}
+
+nav ul li {
+    margin-left: 30px;
+}
+
+nav ul li a {
+    font-weight: 500;
+    position: relative;
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--secondary-color);
+    transition: var(--transition);
+}
+
+nav ul li a:hover::after {
+    width: 100%;
+}
+
+.mobile-menu-btn {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.8)), url('https://source.unsplash.com/random/1600x900/?courthouse') no-repeat center center/cover;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    color: #fff;
+    text-align: center;
+    padding-top: 80px;
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.hero h2 {
+    font-family: var(--font-secondary);
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Practice Areas Section */
+.practice-areas {
+    padding: 100px 0;
+    background-color: #f9f9f9;
+}
+
+.practice-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.practice-card {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    text-align: center;
+}
+
+.practice-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.practice-card .icon {
+    font-size: 2.5rem;
+    color: var(--secondary-color);
+    margin-bottom: 20px;
+}
+
+.practice-card h3 {
+    font-family: var(--font-secondary);
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+.practice-card p {
+    color: var(--text-light);
+    margin-bottom: 20px;
+}
+
+.read-more {
+    font-weight: 600;
+    color: var(--secondary-color);
+    position: relative;
+}
+
+.read-more::after {
+    content: '→';
+    margin-left: 5px;
+    transition: var(--transition);
+}
+
+.read-more:hover::after {
+    margin-left: 10px;
+}
+
+/* Why Choose Us Section */
+.why-choose-us {
+    padding: 100px 0;
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+.why-choose-us .section-title {
+    color: #fff;
+}
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+}
+
+.feature {
+    text-align: center;
+}
+
+.feature-icon {
+    font-size: 3rem;
+    color: var(--accent-color);
+    margin-bottom: 20px;
+}
+
+.feature h3 {
+    font-family: var(--font-secondary);
+    margin-bottom: 15px;
+}
+
+/* Attorneys Section */
+.attorneys {
+    padding: 100px 0;
+    background-color: #fff;
+}
+
+.attorney-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+}
+
+.attorney-card {
+    text-align: center;
+    transition: var(--transition);
+}
+
+.attorney-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    background-color: #ddd;
+    background-position: center;
+    background-size: cover;
+    box-shadow: var(--shadow);
+}
+
+.attorney-card:nth-child(1) .attorney-image {
+    background-image: url('https://source.unsplash.com/random/200x200/?woman,professional');
+}
+
+.attorney-card:nth-child(2) .attorney-image {
+    background-image: url('https://source.unsplash.com/random/200x200/?man,professional');
+}
+
+.attorney-card:nth-child(3) .attorney-image {
+    background-image: url('https://source.unsplash.com/random/200x200/?asian,woman,professional');
+}
+
+.attorney-card h3 {
+    font-family: var(--font-secondary);
+    color: var(--primary-color);
+    margin-bottom: 5px;
+}
+
+.position {
+    color: var(--secondary-color);
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.specialty {
+    color: var(--text-light);
+    margin-bottom: 15px;
+}
+
+.attorney-social {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.attorney-social a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--light-color);
+    color: var(--primary-color);
+    transition: var(--transition);
+}
+
+.attorney-social a:hover {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+/* Testimonials Section */
+.testimonials {
+    padding: 100px 0;
+    background-color: #f9f9f9;
+}
+
+.testimonial-slider {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.testimonial {
+    text-align: center;
+    padding: 20px;
+}
+
+.quote {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.quote i.fa-quote-left {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: #ddd;
+    font-size: 1.5rem;
+}
+
+.quote i.fa-quote-right {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    color: #ddd;
+    font-size: 1.5rem;
+}
+
+.quote p {
+    font-style: italic;
+    color: var(--text-light);
+}
+
+.client {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.client-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #ddd;
+    margin-right: 15px;
+    background-position: center;
+    background-size: cover;
+}
+
+.testimonial:nth-child(1) .client-image {
+    background-image: url('https://source.unsplash.com/random/60x60/?woman');
+}
+
+.testimonial:nth-child(2) .client-image {
+    background-image: url('https://source.unsplash.com/random/60x60/?man');
+}
+
+.testimonial:nth-child(3) .client-image {
+    background-image: url('https://source.unsplash.com/random/60x60/?woman,latina');
+}
+
+.client-info h4 {
+    color: var(--primary-color);
+    margin-bottom: 5px;
+}
+
+.client-info p {
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+.slider-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.prev-btn, .next-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.prev-btn:hover, .next-btn:hover {
+    color: var(--secondary-color);
+}
+
+.slider-dots {
+    display: flex;
+    gap: 10px;
+    margin: 0 20px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #ddd;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.dot.active {
+    background-color: var(--secondary-color);
+}
+
+/* Contact Section */
+.contact {
+    padding: 100px 0;
+    background-color: #fff;
+}
+
+.contact-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 50px;
+}
+
+.contact-info h2 {
+    font-family: var(--font-secondary);
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.contact-info > p {
+    color: var(--text-light);
+    margin-bottom: 30px;
+}
+
+.contact-details {
+    margin-bottom: 30px;
+}
+
+.contact-item {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.contact-item i {
+    color: var(--secondary-color);
+    font-size: 1.2rem;
+    margin-right: 15px;
+    margin-top: 5px;
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+}
+
+.social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--light-color);
+    color: var(--primary-color);
+    transition: var(--transition);
+}
+
+.social-links a:hover {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+.contact-form {
+    background-color: #f9f9f9;
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+.contact-form h3 {
+    font-family: var(--font-secondary);
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius);
+    font-family: var(--font-primary);
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.form-group textarea {
+    height: 150px;
+    resize: vertical;
+}
+
+/* Footer */
+footer {
+    background-color: var(--dark-color);
+    color: #fff;
+    padding: 70px 0 20px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    margin-bottom: 50px;
+}
+
+.footer-logo h3 {
+    font-family: var(--font-secondary);
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.footer-logo i {
+    margin-right: 10px;
+    color: var(--secondary-color);
+}
+
+.footer-logo p {
+    color: #bbb;
+}
+
+.footer-links h4,
+.footer-practice h4,
+.footer-newsletter h4 {
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.footer-links h4::after,
+.footer-practice h4::after,
+.footer-newsletter h4::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 2px;
+    background-color: var(--secondary-color);
+}
+
+.footer-links ul li,
+.footer-practice ul li {
+    margin-bottom: 10px;
+}
+
+.footer-links ul li a,
+.footer-practice ul li a {
+    color: #bbb;
+    transition: var(--transition);
+}
+
+.footer-links ul li a:hover,
+.footer-practice ul li a:hover {
+    color: #fff;
+    padding-left: 5px;
+}
+
+.footer-newsletter p {
+    color: #bbb;
+    margin-bottom: 15px;
+}
+
+.footer-newsletter form {
+    display: flex;
+}
+
+.footer-newsletter input {
+    flex: 1;
+    padding: 10px 15px;
+    border: none;
+    border-radius: var(--border-radius) 0 0 var(--border-radius);
+    font-family: var(--font-primary);
+}
+
+.footer-newsletter button {
+    padding: 10px 15px;
+    background-color: var(--secondary-color);
+    color: #fff;
+    border: none;
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.footer-newsletter button:hover {
+    background-color: #a93226;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.footer-bottom p {
+    color: #bbb;
+    font-size: 0.9rem;
+}
+
+.footer-bottom-links {
+    display: flex;
+    gap: 20px;
+}
+
+.footer-bottom-links a {
+    color: #bbb;
+    font-size: 0.9rem;
+    transition: var(--transition);
+}
+
+.footer-bottom-links a:hover {
+    color: #fff;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+    .hero h2 {
+        font-size: 2.8rem;
+    }
+    
+    .section-title {
+        font-size: 2.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 10px 0;
+    }
+    
+    .logo h1 {
+        font-size: 1.5rem;
+    }
+    
+    nav ul {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background-color: #fff;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding-top: 50px;
+        transition: var(--transition);
+        box-shadow: var(--shadow);
+    }
+    
+    nav ul.active {
+        left: 0;
+    }
+    
+    nav ul li {
+        margin: 15px 0;
+    }
+    
+    .mobile-menu-btn {
+        display: block;
+    }
+    
+    .hero h2 {
+        font-size: 2.2rem;
+    }
+    
+    .hero p {
+        font-size: 1rem;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .contact-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+}
+
+@media (max-width: 576px) {
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    .practice-grid,
+    .features,
+    .attorney-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+}
