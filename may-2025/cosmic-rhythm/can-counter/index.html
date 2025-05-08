@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Can Counter</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Daily Can Counter</h1>
+            <p>Track your beverage consumption</p>
+        </header>
+
+        <div class="can-buttons">
+            <div class="can-button" id="coke-zero">
+                <div class="can-icon">
+                    <i class="fas fa-glass-whiskey"></i>
+                </div>
+                <h2>Coke Zero</h2>
+                <p>Today: <span id="coke-zero-count">0</span></p>
+                <button class="add-btn">Add One</button>
+            </div>
+
+            <div class="can-button" id="fanta-zero">
+                <div class="can-icon">
+                    <i class="fas fa-glass-whiskey"></i>
+                </div>
+                <h2>Fanta Zero</h2>
+                <p>Today: <span id="fanta-zero-count">0</span></p>
+                <button class="add-btn">Add One</button>
+            </div>
+
+            <div class="can-button" id="sparkling-water">
+                <div class="can-icon">
+                    <i class="fas fa-glass-whiskey"></i>
+                </div>
+                <h2>Sparkling Water</h2>
+                <p>Today: <span id="sparkling-water-count">0</span></p>
+                <button class="add-btn">Add One</button>
+            </div>
+        </div>
+
+        <div class="summary-section">
+            <h2>Today's Summary</h2>
+            <div class="summary-content">
+                <div class="summary-card">
+                    <h3>Total Cans</h3>
+                    <p id="total-cans">0</p>
+                </div>
+                <div class="summary-details">
+                    <div class="summary-item">
+                        <span class="drink-label coke">Coke Zero:</span>
+                        <span id="coke-zero-total">0</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="drink-label fanta">Fanta Zero:</span>
+                        <span id="fanta-zero-total">0</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="drink-label water">Sparkling Water:</span>
+                        <span id="sparkling-water-total">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
