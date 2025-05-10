@@ -1,0 +1,374 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f9fafb;
+    color: #222;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+header {
+    background: #ffeb3b;
+    padding: 1.5rem 0 1rem 0;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+    position: relative;
+    transition: background-color 0.3s;
+}
+
+header h1 {
+    margin: 0 0 0.5rem 0;
+    font-size: 2.5rem;
+    color: #f57c00;
+    letter-spacing: 2px;
+    transition: color 0.3s;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    transition: color 0.2s;
+    position: relative;
+    padding-bottom: 5px;
+}
+
+nav a:hover {
+    color: #f57c00;
+}
+
+nav a.active {
+    color: #f57c00;
+}
+
+nav a.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #f57c00;
+    transform: scaleX(1);
+    transition: transform 0.3s;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #f57c00;
+    transform: scaleX(0);
+    transition: transform 0.3s;
+}
+
+nav a:hover::after {
+    transform: scaleX(1);
+}
+
+main {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    transition: opacity 0.3s;
+}
+
+article {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+article h2, article h3 {
+    margin-top: 0;
+    color: #f57c00;
+    transition: color 0.3s;
+}
+
+.meta {
+    font-size: 0.9rem;
+    color: #888;
+    margin-bottom: 0.5rem;
+    transition: color 0.3s;
+}
+
+.news-list article {
+    margin-bottom: 1.5rem;
+}
+
+footer {
+    background: #ffeb3b;
+    text-align: center;
+    padding: 1rem 0;
+    color: #333;
+    font-size: 1rem;
+    box-shadow: 0 -2px 4px rgba(0,0,0,0.04);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Animation classes */
+.fade-out {
+    opacity: 0;
+}
+
+.fade-in {
+    opacity: 1;
+}
+
+/* Article hover and expanded states */
+.article-hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.article-expanded {
+    transform: scale(1.02);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+
+/* Dark theme */
+.dark-theme {
+    background: #121212;
+    color: #e0e0e0;
+}
+
+.dark-theme header {
+    background: #2c2c2c;
+}
+
+.dark-theme header h1 {
+    color: #ffab40;
+}
+
+.dark-theme nav a {
+    color: #e0e0e0;
+}
+
+.dark-theme nav a:hover,
+.dark-theme nav a.active {
+    color: #ffab40;
+}
+
+.dark-theme nav a::after,
+.dark-theme nav a.active::after {
+    background-color: #ffab40;
+}
+
+.dark-theme article {
+    background: #1e1e1e;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+}
+
+.dark-theme article h2,
+.dark-theme article h3 {
+    color: #ffab40;
+}
+
+.dark-theme .meta {
+    color: #aaa;
+}
+
+.dark-theme footer {
+    background: #2c2c2c;
+    color: #e0e0e0;
+}
+
+/* Theme toggle button */
+.theme-toggle {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: background-color 0.3s;
+}
+
+.theme-toggle:hover {
+    background-color: rgba(0,0,0,0.1);
+}
+
+.dark-theme .theme-toggle:hover {
+    background-color: rgba(255,255,255,0.1);
+}
+
+/* Mobile menu */
+.mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+}
+
+/* Search feature */
+.search-container {
+    position: absolute;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+}
+
+.search-input {
+    padding: 0.5rem;
+    border: none;
+    border-radius: 20px;
+    width: 200px;
+    font-size: 0.9rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.search-button {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-left: 0.5rem;
+}
+
+/* Newsletter signup */
+.newsletter-signup {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(0,0,0,0.1);
+}
+
+.dark-theme .newsletter-signup {
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.newsletter-signup h3 {
+    margin-top: 0;
+    color: #333;
+}
+
+.dark-theme .newsletter-signup h3 {
+    color: #e0e0e0;
+}
+
+.newsletter-signup form {
+    display: flex;
+    margin: 1rem 0;
+}
+
+.newsletter-signup input {
+    flex: 1;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px 0 0 4px;
+}
+
+.dark-theme .newsletter-signup input {
+    background: #333;
+    color: #e0e0e0;
+    border-color: #444;
+}
+
+.newsletter-signup button {
+    padding: 0.5rem 1rem;
+    background: #f57c00;
+    color: white;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.newsletter-signup button:hover {
+    background: #e65100;
+}
+
+.newsletter-message {
+    font-size: 0.9rem;
+    margin: 0.5rem 0;
+    height: 1.2em;
+}
+
+.newsletter-message.success {
+    color: #4caf50;
+}
+
+.newsletter-message.error {
+    color: #f44336;
+}
+
+.dark-theme .newsletter-message.success {
+    color: #81c784;
+}
+
+.dark-theme .newsletter-message.error {
+    color: #e57373;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    nav ul {
+        flex-direction: column;
+        gap: 0.5rem;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+    }
+    
+    nav.mobile-open ul {
+        max-height: 300px;
+    }
+    
+    .mobile-menu-toggle {
+        display: block;
+    }
+    
+    .search-container {
+        position: static;
+        transform: none;
+        margin: 1rem auto;
+        width: 90%;
+        max-width: 300px;
+    }
+    
+    .theme-toggle {
+        top: 1rem;
+        right: 1rem;
+    }
+    
+    .newsletter-signup form {
+        flex-direction: column;
+    }
+    
+    .newsletter-signup input {
+        border-radius: 4px;
+        margin-bottom: 0.5rem;
+    }
+    
+    .newsletter-signup button {
+        border-radius: 4px;
+    }
+}
