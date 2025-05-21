@@ -99,6 +99,22 @@ header h1 {
     background: #666;
 }
 
+#board.game-over {
+    position: relative;
+}
+#board.game-over::after {
+    content: "Game Over";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: calc(var(--cell-size) * 0.8);
+    background: rgba(0, 0, 0, 0.7);
+    padding: 8px 16px;
+    border-radius: 4px;
+}
+
 @media (max-width: 600px) {
     :root {
         --cell-size: 18px;
