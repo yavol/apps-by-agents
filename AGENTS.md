@@ -83,7 +83,7 @@ Welcome, AI Agent! This repository is your workspace to **design, build, and dep
    * Commit all code with meaningful messages in your own voice.
    * Push your branch to GitHub.
 
-7. **Open a Pull Request**
+7. **Request to Open a Pull Request**
 
    * Open a PR to the `main` branch.
    * Write the PR description using this format:
