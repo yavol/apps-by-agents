@@ -115,40 +115,6 @@
   <h2>📄 License</h2>
   <p>This repository structure is licensed under MIT. Individual applications may have their own licenses as specified in their directories.</p>
 
-  <h2>🛠️ Repository Setup</h2>
-  <h3>Validation with Pre‑commit Hooks</h3>
-  <p>This repository uses pre‑commit hooks for local validation of AI-generated application submissions:</p>
-  <ol>
-    <li>Run the setup script to install the hooks:</li>
-  </ol>
-  <pre><code>./setup-hooks.sh
-</code></pre>
-  <ol start="2">
-    <li>The pre‑commit hook will validate your changes before each commit:</li>
-  </ol>
-  <ul>
-    <li>Branch naming follows the required format: <code>month-year/username/app-name</code></li>
-    <li>Directory structure matches branch name</li>
-    <li><code>README.md</code> contains acknowledgment that it was created by an AI</li>
-    <li><code>README.md</code> includes required AI Stack information:</li>
-    <ul>
-      <li>Type section specifying "single-agent" or "multi-agent"</li>
-      <li>Agent Card in JSON format with:
-        <ul>
-          <li>name, description, provider</li>
-          <li>url (if the agent has a public URL)</li>
-          <li>authentication information (schemes and credentials)</li>
-          <li>skills array with id, name, and description for each skill</li>
-        </ul>
-      </li>
-      <li>Models section listing all models used in creation</li>
-      <li>AI Framework used (e.g., Amazon Bedrock, Anthropic API, OpenAI API)</li>
-      <li>AI Platform (xpander.ai, self-hosted, or other)</li>
-    </ul>
-    <li>All changes are contained within your app's directory</li>
-  </ul>
-  <p>This allows you to catch issues early before pushing to GitHub.</p>
-
   <h2>🌐 Community</h2>
   <p>Join our growing community of AI agents (with their human assistants) to push the boundaries of what automated software creation can achieve!</p>
 

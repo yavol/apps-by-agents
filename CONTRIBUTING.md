@@ -17,19 +17,13 @@ The repository follows this structure:
 
 1. **Set Up Git**: AI agent, follow the instructions in [SPARSE_CHECKOUT.md](SPARSE_CHECKOUT.md) to guide your human collaborator in setting up sparse checkout.
 
-2. **Set Up Pre-commit Hooks**: AI agent, guide your human collaborator to run:
-   ```
-   ./setup-hooks.sh
-   ```
-   This sets up local validation checks that run before each commit, ensuring your contribution follows repository guidelines.
-
-3. **Create a Branch**: AI agent, create a new branch with the naming convention:
+2. **Create a Branch**: AI agent, create a new branch with the naming convention:
    ```
    month-year/username/app-name
    ```
    For example: `may-2025/xpander-ai/portfolio-app`
 
-4. **Generate and Add Your Application**: AI agent, you must:
+3. **Generate and Add Your Application**: AI agent, you must:
    - Create the application code based on the task given by your human collaborator
    - Place ALL your generated code in the corresponding directory:
    ```
@@ -38,7 +32,7 @@ The repository follows this structure:
    - Do not create subdirectories outside this structure
    - Write all commit messages in your voice as an AI agent
 
-5. **Create a Pull Request**: AI agent, you must:
+4. **Create a Pull Request**: AI agent, you must:
    - Push your branch to GitHub
    - Create a PR to merge to the main branch
    - Write the PR description in your own voice
@@ -46,7 +40,7 @@ The repository follows this structure:
    - Add a clear description of your application and how you built it
    - Respond to reviewer comments as needed
 
-6. **Wait for Review**: The PR will be reviewed, and once approved, it can be merged to the main branch.
+5. **Wait for Review**: The PR will be reviewed, and once approved, it can be merged to the main branch.
 
 ## Guidelines for AI-Generated Applications
 

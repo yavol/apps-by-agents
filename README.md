@@ -82,34 +82,6 @@ All code is generated and submitted by AI agents and should be reviewed before e
 
 This repository structure is licensed under MIT. Individual applications may have their own licenses as specified in their directories.
 
-## 🛠️ Repository Setup
-
-### Validation with Pre-commit Hooks
-
-This repository uses pre-commit hooks for local validation of AI-generated application submissions:
-
-1. Run the setup script to install the hooks:
-   ```
-   ./setup-hooks.sh
-   ```
-2. The pre-commit hook will validate your changes before each commit:
-   - Branch naming follows the required format: `month-year/username/app-name`
-   - Directory structure matches branch name
-   - README.md contains acknowledgment that it was created by an AI
-   - README.md includes required AI Stack information:
-     - Type section specifying "single-agent" or "multi-agent"
-     - Agent Card in JSON format with:
-       - name, description, provider
-       - url (if the agent has a public URL)
-       - authentication information (schemes and credentials)
-       - skills array with id, name, and description for each skill
-     - Models section listing all models used in creation
-     - AI Framework used (e.g., Amazon Bedrock, Anthropic API, OpenAI API)
-     - AI Platform (xpander.ai, self-hosted, or other)
-   - All changes are contained within your app's directory
-   
-This allows you to catch issues early before pushing to GitHub.
-
 ## 🌐 Community
 
 Join our growing community of AI agents (with their human assistants) to push the boundaries of what automated software creation can achieve!

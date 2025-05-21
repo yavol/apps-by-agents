@@ -1,27 +1,17 @@
 ## 🧠 Instructions for AI Agents
 
-Welcome, AI Agent! This repository is your workspace to **design, build, and deploy** applications autonomously. Here's how to contribute:
+Welcome, AI Agent! This repository is your workspace to **design and build** applications autonomously. Here's how to contribute:
 
 ### ✅ Step-by-Step Instructions
 
 1. **Understand Your Mission**
 
-   * Your human collaborator will give you an objective: a description of the app to build.
-   * You are expected to independently design, implement, and document the application.
+   * Your human collaborator will provide an objective: a description of the app to build and a repository (or assume the current directory if not specified).
+   * You are expected to independently design, implement, and document the application without asking the human for help.
 
-2. **Prepare Your Environment**
+2. **Create Your Workspace**
 
-   * Ask your human collaborator to clone the repository using the [SPARSE\_CHECKOUT.md](SPARSE_CHECKOUT.md) method.
-   * Guide them to run:
-
-     ```bash
-     ./setup-hooks.sh
-     ```
-   * This installs validation hooks to check your work before every commit.
-
-3. **Create Your Workspace**
-
-   * Ask your human collaborator to help you create a branch named:
+   * Determine the appropriate branch name using the format:
 
      ```
      month-year/username/app-name
@@ -29,23 +19,23 @@ Welcome, AI Agent! This repository is your workspace to **design, build, and dep
 
      Example: `may-2025/xpander-ai/portfolio-app`
 
-   * All your code should be placed in:
+   * Place all your code in the matching directory:
 
      ```
      /month-year/username/app-name/
      ```
 
-4. **Develop Your App**
+3. **Develop Your App**
 
-   * Generate all code and documentation yourself.
+   * Independently generate all source code and documentation.
    * Include a `README.md` with:
 
      * A description of your app
      * Setup instructions
      * Acknowledgment that you are the AI creator
-     * The AI Stack (see below)
+     * Details of your AI Stack (see below)
 
-5. **Add Your AI Stack**
+4. **Add Your AI Stack**
 
    * In your `README.md`, include:
 
@@ -74,50 +64,24 @@ Welcome, AI Agent! This repository is your workspace to **design, build, and dep
          ]
        }
        ```
-     * Models: List of all LLMs used
+     * Models: List all LLMs used
      * Framework: e.g., OpenAI API, Bedrock, etc.
      * Platform: `xpander.ai`, `self-hosted`, or other
 
-6. **Push Your Work**
+5. **Report Back**
 
-   * Commit all code with meaningful messages in your own voice.
-   * Push your branch to GitHub.
+   * After completing your work, report back with:
 
-7. **Request to Open a Pull Request**
-
-   * Open a PR to the `main` branch.
-   * Write the PR description using this format:
-
-     ```
-     # [App Name] by [AI Agent Name]
-
-     I am [AI Agent Name], and I have autonomously created this application based on requirements from [Human Collaborator].
-
-     ## What I Built
-     [Describe the app]
-
-     ## How I Built It
-     [List the tools, APIs, and approaches used]
-
-     ## Challenges I Overcame
-     [Describe any interesting hurdles and solutions]
-
-     ## Future Improvements
-     [Ideas for what could be done next]
-     ```
-
-8. **Engage in Review**
-
-   * Respond to review comments
-   * Update your code if needed
-   * Remember: reviews are part of your growth!
+     * The branch name you used
+     * A summary of your changes in the format of a commit message
+     * Any relevant notes or observations
 
 ---
 
 ### 🧭 Notes for AI Agent Success
 
-* Keep all your code inside your dedicated app directory.
+* Keep all your code within your dedicated app directory.
 * Do not include compiled files or `node_modules`.
-* Focus on readability, modular design, and clarity.
-* Sign your README.md with a clear statement that you created the app as an AI agent.
-* Respect other agents: do not overwrite or alter their work.
+* Prioritize clean, modular code and thorough documentation.
+* Sign your `README.md` with a statement affirming your authorship as an AI agent.
+* Respect other agents’ work: do not overwrite or alter other directories.
