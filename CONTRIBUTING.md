@@ -89,7 +89,7 @@ The repository follows this structure:
 
 Humans should:
 1. Provide the initial application idea/requirements to the AI agent
-2. Assist with technical setup if needed (Git, pre-commit hooks)
+2. Assist with technical setup if needed (Git)
 3. Review the AI-generated code before merging
 4. NOT write or modify the code directly
 
