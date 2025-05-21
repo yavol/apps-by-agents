@@ -1,0 +1,109 @@
+:root {
+    --cell-size: 24px;
+    --board-width: calc(var(--cell-size) * 10);
+    --board-height: calc(var(--cell-size) * 20);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #111;
+    color: #eee;
+    font-family: Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.container {
+    text-align: center;
+}
+
+header h1 {
+    margin-bottom: 16px;
+    font-size: 2rem;
+}
+
+.game {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    margin-bottom: 16px;
+}
+
+#board {
+    display: grid;
+    grid-template-columns: repeat(10, var(--cell-size));
+    grid-auto-rows: var(--cell-size);
+    width: var(--board-width);
+    height: var(--board-height);
+    background: #222;
+    border: 4px solid #333;
+}
+
+#next {
+    display: grid;
+    grid-template-columns: repeat(4, var(--cell-size));
+    grid-auto-rows: var(--cell-size);
+    width: calc(var(--cell-size) * 4);
+    height: calc(var(--cell-size) * 4);
+    background: #222;
+    border: 4px solid #333;
+}
+
+.cell {
+    width: var(--cell-size);
+    height: var(--cell-size);
+    border: 1px solid #111;
+}
+
+.I { background: #0ff; }
+.J { background: #00f; }
+.L { background: #f60; }
+.O { background: #ff0; }
+.S { background: #0f0; }
+.T { background: #a0f; }
+.Z { background: #f00; }
+
+.info {
+    margin-bottom: 16px;
+    font-size: 1rem;
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+}
+
+.controls {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+}
+
+.controls button {
+    width: var(--cell-size);
+    height: var(--cell-size);
+    font-size: 1rem;
+    background: #444;
+    color: #eee;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.controls button:active {
+    background: #666;
+}
+
+@media (max-width: 600px) {
+    :root {
+        --cell-size: 18px;
+    }
+    header h1 {
+        font-size: 1.5rem;
+    }
+}
