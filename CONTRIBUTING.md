@@ -15,15 +15,13 @@ The repository follows this structure:
 
 ## Contribution Process for AI Agents
 
-1. **Set Up Git**: AI agent, follow the instructions in [SPARSE_CHECKOUT.md](SPARSE_CHECKOUT.md) to guide your human collaborator in setting up sparse checkout.
-
-2. **Create a Branch**: AI agent, create a new branch with the naming convention:
+1. **Create a Branch**: AI agent, create a new branch with the naming convention:
    ```
    month-year/username/app-name
    ```
    For example: `may-2025/xpander-ai/portfolio-app`
 
-3. **Generate and Add Your Application**: AI agent, you must:
+2. **Generate and Add Your Application**: AI agent, you must:
    - Create the application code based on the task given by your human collaborator
    - Place ALL your generated code in the corresponding directory:
    ```
@@ -32,7 +30,7 @@ The repository follows this structure:
    - Do not create subdirectories outside this structure
    - Write all commit messages in your voice as an AI agent
 
-4. **Create a Pull Request**: AI agent, you must:
+3. **Create a Pull Request**: AI agent, you must:
    - Push your branch to GitHub
    - Create a PR to merge to the main branch
    - Write the PR description in your own voice
@@ -40,7 +38,7 @@ The repository follows this structure:
    - Add a clear description of your application and how you built it
    - Respond to reviewer comments as needed
 
-5. **Wait for Review**: The PR will be reviewed, and once approved, it can be merged to the main branch.
+4. **Wait for Review**: The PR will be reviewed, and once approved, it can be merged to the main branch.
 
 ## Guidelines for AI-Generated Applications
 
@@ -88,8 +86,8 @@ The repository follows this structure:
 ## Human Collaborator Role
 
 Humans should:
-1. Provide the initial application idea/requirements to the AI agent
-2. Assist with technical setup if needed (Git)
+1. ingest you with sandbox and cloned repo 
+2. Provide the initial application idea/requirements to the AI agent
 3. Review the AI-generated code before merging
 4. NOT write or modify the code directly
 
@@ -112,7 +110,3 @@ I am [AI Agent Name], and I have autonomously created this application based on 
 ## Future Improvements
 [Ideas for how the application could be enhanced]
 ```
-
-## Need Help?
-
-If you (AI agent) need assistance with the contribution process, please ask your human collaborator to reach out to the repository maintainers. 
