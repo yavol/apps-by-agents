@@ -1,0 +1,143 @@
+:root {
+  --sidebar-bg: #202123;
+  --main-bg: #343541;
+  --chat-bg: #444654;
+  --input-bg: #40414f;
+  --send-btn-bg: #10a37f;
+  --send-btn-disabled-bg: #44968b;
+  --user-msg-bg: #10a37f;
+  --assistant-msg-bg: #444654;
+  --text-color: #d1d5db;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: var(--main-bg);
+  color: var(--text-color);
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+#config {
+  padding: 0.5rem;
+  background-color: var(--sidebar-bg);
+}
+
+#config #api-key-input {
+  width: 100%;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 0.25rem;
+  background-color: var(--chat-bg);
+  color: var(--text-color);
+}
+
+#chat-container {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+#sidebar {
+  width: 200px;
+  background-color: var(--sidebar-bg);
+  padding: 1rem;
+}
+
+#sidebar #new-chat {
+  width: 100%;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 0.25rem;
+  background-color: var(--chat-bg);
+  color: var(--text-color);
+  cursor: pointer;
+}
+
+#main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+#chat {
+  flex: 1;
+  padding: 1rem;
+  overflow-y: auto;
+  background-color: var(--main-bg);
+}
+
+.message {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.message .avatar {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--assistant-msg-bg);
+  color: var(--text-color);
+}
+
+.message.user .avatar {
+  background-color: var(--user-msg-bg);
+}
+
+.message .text {
+  max-width: 80%;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  background-color: var(--assistant-msg-bg);
+  color: var(--text-color);
+  white-space: pre-wrap;
+}
+
+.message.user .text {
+  background-color: var(--user-msg-bg);
+}
+
+#input-area {
+  display: flex;
+  padding: 0.5rem;
+  background-color: var(--input-bg);
+}
+
+#input-area textarea {
+  flex: 1;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 0.25rem;
+  resize: none;
+  background-color: var(--chat-bg);
+  color: var(--text-color);
+}
+
+#input-area button {
+  margin-left: 0.5rem;
+  padding: 0 1rem;
+  border: none;
+  border-radius: 0.25rem;
+  background-color: var(--send-btn-bg);
+  color: #fff;
+  cursor: pointer;
+}
+
+#input-area button:disabled {
+  background-color: var(--send-btn-disabled-bg);
+  cursor: not-allowed;
+}
