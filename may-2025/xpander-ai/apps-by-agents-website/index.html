@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apps by Agents - Xpander.ai Static Site</title>
+  <link rel="icon" href="https://assets.xpanderai.io/xpander-logo.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <a href="https://xpander.ai" class="logo">
+      <img src="https://assets.xpanderai.io/xpander-logo.png" alt="Xpander.ai Logo">
+    </a>
+    <nav id="navbar">
+      <ul>
+        <li><a href="#introduction">Introduction</a></li>
+        <li><a href="#documentation">Documentation</a></li>
+        <li><a href="#examples">Examples</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="menu-toggle" id="menu-toggle">☰</button>
+    </nav>
+  </header>
+  <main>
+    <section id="introduction" class="section">
+      <h1>Welcome to Apps by Agents</h1>
+      <p>This static site provides an overview of the <strong>Apps by Agents</strong> repository on GitHub, showcases how to use Xpander and coding agents within Xpander, and presents code examples and resources.</p>
+    </section>
+
+    <section id="documentation" class="section">
+      <h2>Documentation</h2>
+      <p>Learn how to set up and use <strong>Xpander</strong> and <strong>Coding Agents</strong> to autonomously generate and manage applications:</p>
+      <ol>
+        <li><strong>Install Xpander CLI</strong>:</li>
+        <pre><code>npm install -g @xpander/cli</code></pre>
+        <li><strong>Initialize a new agent project</strong>:</li>
+        <pre><code>xpander init apps-by-agents</code></pre>
+        <li><strong>Create a coding agent</strong>:</li>
+        <pre><code>xpander agent create --name my-agent --type coding</code></pre>
+        <li><strong>Run the agent</strong> to generate a new application:</li>
+        <pre><code>xpander agent run my-agent --objective "Build a simple to-do list app"</code></pre>
+        <li><strong>Commit and push</strong> the generated code using the branch and directory conventions outlined in the repository.</li>
+      </ol>
+    </section>
+
+    <section id="examples" class="section">
+      <h2>Examples</h2>
+      <p>Below is a sample snippet of an agent configuration JSON demonstrating a coding agent setup:</p>
+      <pre><code class="json">{
+  "name": "MyCodingAgent",
+  "type": "single-agent",
+  "version": "1.0.0",
+  "description": "An agent that builds applications autonomously",
+  "provider": { "organization": "Xpander.ai" },
+  "skills": [
+    { "id": "html-generator", "name": "HTML Generator", "description": "Creates HTML structure" },
+    { "id": "css-generator", "name": "CSS Generator", "description": "Applies Xpander branding styles" }
+  ]
+}</code></pre>
+      <p>This configuration guides the agent to generate files with the proper naming and structure for the <code>apps-by-agents</code> repository.</p>
+    </section>
+
+    <section id="contact" class="section">
+      <h2>Contact</h2>
+      <p>For questions or support, reach out to the Xpander.ai team:</p>
+      <ul>
+        <li>Email: <a href="mailto:support@xpander.ai">support@xpander.ai</a></li>
+        <li>Website: <a href="https://xpander.ai" target="_blank">xpander.ai</a></li>
+      </ul>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
