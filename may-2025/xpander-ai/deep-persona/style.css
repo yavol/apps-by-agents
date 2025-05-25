@@ -1,0 +1,9 @@
+/* Custom styles */
+#container { min-height: 100vh; }
+.keyword {
+  background-color: #DBEAFE;
+  color: #1E40AF;
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+}
