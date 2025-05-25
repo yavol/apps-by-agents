@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pub Shift Manager</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <h1>Pub Shift Manager</h1>
+    <form id="shift-form">
+      <input type="text" id="employee" placeholder="Employee Name" required>
+      <input type="date" id="date" required>
+      <input type="time" id="start" required>
+      <input type="time" id="end" required>
+      <select id="role" required>
+        <option value="">Select Role</option>
+        <option value="Bartender">Bartender</option>
+        <option value="Server">Server</option>
+        <option value="Cook">Cook</option>
+        <option value="Other">Other</option>
+      </select>
+      <button type="submit" id="submit-btn">Add Shift</button>
+      <button type="button" id="cancel-btn" hidden>Cancel</button>
+    </form>
+    <table id="shifts-table">
+      <thead>
+        <tr>
+          <th>Employee</th>
+          <th>Date</th>
+          <th>Start</th>
+          <th>End</th>
+          <th>Role</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
