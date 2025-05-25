@@ -10,6 +10,16 @@
 <body>
   <main>
     <h1>Weather</h1>
+    <div class="controls">
+      <div class="mode-toggle">
+        <label><input type="radio" name="mode" value="all" checked> All Cities</label>
+        <label><input type="radio" name="mode" value="city"> By City</label>
+      </div>
+      <select id="city-select" disabled>
+        <option value="">Select City</option>
+      </select>
+      <label class="unit-toggle"><input type="checkbox" id="unit-toggle"> °F</label>
+    </div>
     <section id="weather-list"></section>
   </main>
   <script src="app.js"></script>

@@ -1,10 +1,10 @@
 # Minimal Weather
 
-A minimal web app showing current weather for major global cities using Open-Meteo API. Pure HTML, JS (fetch), CSS. FontAwesome for icons. Responsive, animated, and fast. No comments or extra features.
+A minimal web app showing current weather for major global cities using Open-Meteo API. Features a control panel to filter by location and toggle temperature units. Pure HTML, JS (fetch), and CSS. FontAwesome for icons. Responsive, animated, and fast.
 
 ## Setup
 
-Just open `index.html` in your browser. No dependencies.
+Open `index.html` in your browser. Use the control panel to select a specific city or view all cities, and toggle between °C and °F. No dependencies.
 
 ## AI Stack
 

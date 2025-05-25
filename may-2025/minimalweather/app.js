@@ -25,20 +25,80 @@ const wc2fa=(w)=>{
   if([0,1].includes(w))return"fa-sun";if([2].includes(w))return"fa-cloud-sun";if([3].includes(w))return"fa-cloud";if([45,48].includes(w))return"fa-smog";if([51,53,55,56,57,61,63,65,66,67,80,81,82].includes(w))return"fa-cloud-showers-heavy";if([71,73,75,77,85,86].includes(w))return"fa-snowflake";if([95,96,99].includes(w))return"fa-bolt";return"fa-wind";
 };
 const wl=document.getElementById('weather-list');
-const enterAnim=(el)=>{el.classList.add('fade-in')};
-const update=async()=>{
-  wl.innerHTML='';
-  await Promise.all(cities.map(async c=>{
-    let d;
-    try{d=await fetch(api(c)).then(r=>r.json());}catch(_){return;}
-    const w=d.current_weather;
-    if(!w)return;
-    const fa=wc2fa(w.weathercode)||c.i;
-    const ct=document.createElement('section');
-    ct.className='city fade-in';
-    ct.innerHTML=`<div class='city-name'><i class='fa-solid city-icon ${fa}'></i>${c.n}</div><span class='city-temp'>${Math.round(w.temperature)}°C</span>`;
-    wl.appendChild(ct);
-    setTimeout(()=>{ct.classList.add('wiggle');setTimeout(()=>ct.classList.remove('wiggle'),700)},500);
-  }))
+const enterAnim = el => { el.classList.add('fade-in') };
+
+let mode = 'all';
+let selectedCity = '';
+let useFahrenheit = false;
+
+const citySelect = document.getElementById('city-select');
+cities.forEach(c => {
+  const opt = document.createElement('option');
+  opt.value = c.n;
+  opt.textContent = c.n;
+  citySelect.appendChild(opt);
+});
+
+document.querySelectorAll('input[name="mode"]').forEach(radio => {
+  radio.addEventListener('change', () => {
+    mode = radio.value;
+    if (mode === 'city') {
+      citySelect.disabled = false;
+    } else {
+      citySelect.disabled = true;
+      selectedCity = '';
+      citySelect.value = '';
+    }
+    update();
+  });
+});
+
+citySelect.addEventListener('change', () => {
+  selectedCity = citySelect.value;
+  update();
+});
+
+const unitToggle = document.getElementById('unit-toggle');
+unitToggle.addEventListener('change', () => {
+  useFahrenheit = unitToggle.checked;
+  update();
+});
+const update = async () => {
+  wl.innerHTML = '';
+  let list = cities;
+  if (mode === 'city') {
+    if (!selectedCity) {
+      wl.innerHTML = '<p>Please select a city.</p>';
+      return;
+    }
+    list = cities.filter(c => c.n === selectedCity);
+  }
+  await Promise.all(
+    list.map(async c => {
+      let d;
+      try {
+        d = await fetch(api(c)).then(r => r.json());
+      } catch (_) {
+        return;
+      }
+      const w = d.current_weather;
+      if (!w) return;
+      const fa = wc2fa(w.weathercode) || c.i;
+      const tempC = w.temperature;
+      const temp = useFahrenheit
+        ? Math.round(tempC * 9/5 + 32)
+        : Math.round(tempC);
+      const unit = useFahrenheit ? '°F' : '°C';
+      const ct = document.createElement('section');
+      ct.className = 'city fade-in';
+      ct.innerHTML = `<div class='city-name'><i class='fa-solid city-icon ${fa}'></i>${c.n}</div><span class='city-temp'>${temp}${unit}</span>`;
+      wl.appendChild(ct);
+      setTimeout(() => {
+        ct.classList.add('wiggle');
+        setTimeout(() => ct.classList.remove('wiggle'), 700);
+      }, 500);
+    })
+  );
 };
+
 update();
