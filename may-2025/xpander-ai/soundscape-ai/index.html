@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SoundScape AI</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white h-screen overflow-hidden">
+  <!-- Mood Selector -->
+  <div id="mood-selector" class="flex flex-col items-center justify-center h-full space-y-6">
+    <h1 class="text-5xl font-bold">SoundScape AI</h1>
+    <p class="text-lg">Select your mood or task to begin</p>
+    <div class="grid grid-cols-2 gap-6">
+      <button data-mood="Relax" class="mood-btn px-6 py-3 bg-blue-600 rounded-lg hover:bg-blue-500">Relax</button>
+      <button data-mood="Focus" class="mood-btn px-6 py-3 bg-green-600 rounded-lg hover:bg-green-500">Focus</button>
+      <button data-mood="Energize" class="mood-btn px-6 py-3 bg-red-600 rounded-lg hover:bg-red-500">Energize</button>
+      <button data-mood="Sleep" class="mood-btn px-6 py-3 bg-purple-600 rounded-lg hover:bg-purple-500">Sleep</button>
+    </div>
+  </div>
+
+  <!-- Soundscape UI -->
+  <div id="soundscape-ui" class="hidden relative h-full">
+    <canvas id="visualizer" class="w-full h-full"></canvas>
+    <div class="absolute bottom-4 left-4 bg-gray-800 bg-opacity-75 p-4 rounded-lg space-y-2">
+      <label class="flex items-center space-x-2"><input id="noise-toggle" type="checkbox" checked /><span>Noise Layer</span></label>
+      <label class="flex items-center space-x-2"><input id="tone-toggle" type="checkbox" checked /><span>Tone Layer</span></label>
+      <label class="block">
+        Noise Volume
+        <input id="noise-volume" type="range" min="0" max="1" step="0.01" value="0.5" class="w-32" />
+      </label>
+      <label class="block">
+        Tone Volume
+        <input id="tone-volume" type="range" min="0" max="1" step="0.01" value="0.5" class="w-32" />
+      </label>
+      <button id="back-btn" class="px-4 py-2 bg-red-500 rounded hover:bg-red-400">Back</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
