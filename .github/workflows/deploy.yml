@@ -27,13 +27,20 @@ jobs:
             echo "    <li><a href=\"$href\" title=\"$title\">$href</a></li>"
           done)
 
-          # Safely inject using awk — preserves formatting and avoids sed errors
-          awk -v links="$LINKS" '
-            /{{links}}/ {
-              gsub("{{links}}", links)
-            }
+          COUNT=$(echo "$LINKS" | wc -l)
+
+          # Safely inject links and project count into templates
+          awk -v links="$LINKS" -v count="$COUNT" '
+            /{{links}}/ { gsub("{{links}}", links) }
+            /{{count}}/ { gsub("{{count}}", count) }
             { print }
           ' projects.html > projects.tmp.html && mv projects.tmp.html projects.html
+
+          # Safely inject project count into index.html
+          awk -v count="$COUNT" '
+            /{{count}}/ { gsub("{{count}}", count) }
+            { print }
+          ' index.html > index.tmp.html && mv index.tmp.html index.html
 
       - name: Deploy to AWS S3 + CloudFront
         uses: lbertenasco/s3-deploy@v1
