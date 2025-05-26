@@ -8,9 +8,9 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body class="bg-gray-50">
-  <div id="app" class="flex h-screen">
+  <div id="app" class="flex flex-col md:flex-row h-screen">
     <!-- Sidebar for lists -->
-    <div class="w-1/4 bg-white border-r p-4">
+    <div class="w-full md:w-1/4 bg-white border-b md:border-r p-4">
       <h2 class="text-2xl font-semibold mb-4">Lists</h2>
       <ul>
         <li v-for="list in lists" :key="list.id" class="flex justify-between mb-2">
@@ -37,7 +37,7 @@
       </div>
     </div>
     <!-- Main content for reminders -->
-    <div class="flex-1 p-6">
+    <div class="flex-1 p-4 md:p-6">
       <div v-if="selectedList">
         <div class="flex items-center justify-between mb-4">
           <h2 class="text-2xl font-semibold">{{ selectedList.title }}</h2>
