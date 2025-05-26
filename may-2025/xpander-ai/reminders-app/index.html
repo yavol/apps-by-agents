@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reminders App</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="bg-gray-50">
+  <div id="app" class="flex h-screen">
+    <!-- Sidebar for lists -->
+    <div class="w-1/4 bg-white border-r p-4">
+      <h2 class="text-2xl font-semibold mb-4">Lists</h2>
+      <ul>
+        <li v-for="list in lists" :key="list.id" class="flex justify-between mb-2">
+          <button
+            @click="selectList(list.id)"
+            :class="{'font-bold': list.id === selectedListId}"
+            class="text-left flex-1"
+          >
+            {{ list.title }}
+          </button>
+          <button @click="deleteList(list.id)" class="text-red-500 hover:text-red-700 ml-2">✕</button>
+        </li>
+      </ul>
+      <div class="mt-4">
+        <input
+          v-model="newListTitle"
+          @keyup.enter="addList"
+          placeholder="New list title"
+          class="border p-2 w-full rounded"
+        />
+        <button @click="addList" class="mt-2 bg-blue-500 text-white px-4 py-2 rounded w-full hover:bg-blue-600">
+          Add List
+        </button>
+      </div>
+    </div>
+    <!-- Main content for reminders -->
+    <div class="flex-1 p-6">
+      <div v-if="selectedList">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-2xl font-semibold">{{ selectedList.title }}</h2>
+          <button @click="requestPermission" class="text-sm text-gray-500 hover:text-gray-700">
+            🔔 Enable Notifications
+          </button>
+        </div>
+        <ul>
+          <li
+            v-for="reminder in selectedList.reminders"
+            :key="reminder.id"
+            class="flex justify-between items-center mb-2 p-2 bg-white rounded shadow-sm"
+          >
+            <div>
+              <input type="checkbox" v-model="reminder.completed" @change="saveLists" />
+              <span :class="{'line-through text-gray-400': reminder.completed}" class="ml-2">
+                {{ reminder.title }} - {{ formatDate(reminder.due) }}
+              </span>
+            </div>
+            <div>
+              <button @click="editReminder(reminder)" class="text-yellow-500 hover:text-yellow-700 mr-2">Edit</button>
+              <button @click="deleteReminder(reminder.id)" class="text-red-500 hover:text-red-700">Delete</button>
+            </div>
+          </li>
+        </ul>
+        <div class="mt-6 p-4 bg-white rounded shadow-sm">
+          <h3 class="text-lg font-medium mb-2">Add Reminder</h3>
+          <input
+            v-model="newReminder.title"
+            placeholder="Title"
+            class="border p-2 w-full rounded mb-2"
+          />
+          <input
+            v-model="newReminder.due"
+            type="datetime-local"
+            class="border p-2 w-full rounded mb-4"
+          />
+          <button @click="addReminder" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
+            Add Reminder
+          </button>
+        </div>
+      </div>
+      <div v-else class="h-full flex items-center justify-center text-gray-500">
+        Select or create a list to get started.
+      </div>
+    </div>
+  </div>
+  <script src="https://unpkg.com/vue@3"></script>
+  <script src="script.js"></script>
+</body>
+</html>
