@@ -1,0 +1,22 @@
+/* CSS Reset */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --font-size: 16px;
+  --font-family: Arial, sans-serif;
+  --line-height: 1.6;
+}
+
+/* Recipe Book App Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  background-color: #f9f9f9;
+}
+
+h1 {
+  color: #333333;
+}
