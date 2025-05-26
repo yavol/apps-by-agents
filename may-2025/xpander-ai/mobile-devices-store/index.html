@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mobile Devices Mock Store</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Mobile Devices Mock Store</h1>
+    <div class="cart">
+      <button id="cart-toggle">Cart (<span id="cart-count">0</span>)</button>
+    </div>
+  </header>
+  <main>
+    <div class="store-grid" id="store-grid"></div>
+    <div class="cart-panel hidden" id="cart-panel">
+      <h2>Your Cart</h2>
+      <ul id="cart-items"></ul>
+      <p class="total">Total: $<span id="cart-total">0.00</span></p>
+      <button id="clear-cart">Clear Cart</button>
+    </div>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
