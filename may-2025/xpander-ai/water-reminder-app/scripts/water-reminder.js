@@ -57,6 +57,13 @@
     setProgress(percent);
   }
 
+  // Calculate the amount to add per tap or hold based on unit settings
+  function getAmount() {
+    return settings.unit === 'oz'
+      ? parseFloat((250 / ML_PER_OZ).toFixed(2))
+      : 250;
+  }
+
   function askNotificationPermission() {
     if (Notification.permission === 'default') {
       Notification.requestPermission();
@@ -92,28 +99,26 @@
     scheduleReminder();
   });
 
+  // Single tap adds water once; holding adds continuously
   addBtn.addEventListener('click', () => {
-    const amount = settings.unit === 'oz'
-      ? parseFloat((250 / ML_PER_OZ).toFixed(2))
-      : 250;
+    const amount = getAmount();
     intake = parseFloat((intake + amount).toFixed(2));
     saveIntake();
     updateUI();
   });
 
-  addBtn.addEventListener('mousedown', () => {
+  addBtn.addEventListener('pointerdown', () => {
     addBtn._interval = setInterval(() => {
-      const amount = settings.unit === 'oz'
-        ? 250 / ML_PER_OZ
-        : 250;
+      const amount = getAmount();
       intake = parseFloat((intake + amount).toFixed(2));
       saveIntake();
       updateUI();
     }, 200);
   });
 
-  addBtn.addEventListener('mouseup', () => clearInterval(addBtn._interval));
-  addBtn.addEventListener('mouseleave', () => clearInterval(addBtn._interval));
+  addBtn.addEventListener('pointerup', () => clearInterval(addBtn._interval));
+  addBtn.addEventListener('pointerleave', () => clearInterval(addBtn._interval));
+  addBtn.addEventListener('pointercancel', () => clearInterval(addBtn._interval));
 
   settingsBtn.addEventListener('click', openModal);
   closeBtn.addEventListener('click', closeModal);
