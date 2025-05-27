@@ -2,16 +2,49 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Water Reminder App</title>
-  <link rel="stylesheet" href="styles/water-reminder.css">
+  <link rel="stylesheet" href="styles/water-reminder.css" />
 </head>
 <body>
-  <div class="glassmorphic-container">
-    <h1>Hydration Tracker</h1>
-    <div id="tracker-placeholder">Loading tracker...</div>
+  <div class="app-container">
+    <h1>💧 Water Reminder</h1>
+    <div class="progress-container">
+      <svg class="progress-ring" width="200" height="200">
+        <circle class="progress-ring__circle" stroke="#6b33f2" stroke-width="10" fill="transparent" r="90" cx="100" cy="100" />
+      </svg>
+      <div class="progress-text">
+        <span id="intake-text">0</span>/<span id="goal-text">0</span> <span id="unit-text">ml</span>
+      </div>
+    </div>
+    <button id="add-water-btn" class="glass-btn">+ Add 250 ml</button>
+    <button id="settings-btn" class="glass-btn settings-btn">⚙️</button>
   </div>
+
+  <div id="settings-modal" class="modal">
+    <div class="modal-content glass">
+      <h2>Settings</h2>
+      <label>
+        Daily Goal:
+        <input type="number" id="daily-goal-input" />
+        <select id="unit-select">
+          <option value="ml">ml</option>
+          <option value="oz">oz</option>
+        </select>
+      </label>
+      <label>
+        Reminder Interval (minutes):
+        <input type="number" id="interval-input" />
+      </label>
+      <div class="modal-actions">
+        <button id="save-settings-btn" class="glass-btn">Save</button>
+        <button id="reset-data-btn" class="glass-btn reset-btn">Reset</button>
+        <button id="close-settings-btn" class="glass-btn close-btn">Close</button>
+      </div>
+    </div>
+  </div>
+
   <script src="scripts/water-reminder.js"></script>
 </body>
 </html>
