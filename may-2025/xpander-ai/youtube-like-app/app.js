@@ -28,9 +28,30 @@ const mockVideos = [
     videoUrl: 'https://www.youtube.com/embed/3JZ_D3ELwOQ'
   }
 ];
+];
+
+/** Create HTML for a single video card */
+function createVideoCard(video) {
+  return `
+    <div class="video-card">
+      <img src="${video.thumbnail}" alt="${video.title}">
+      <div class="video-info">
+        <h3 class="video-title">${video.title}</h3>
+        <p class="video-channel">${video.channel}</p>
+        <p class="video-stats">${video.views} • ${video.date}</p>
+      </div>
+    </div>
+  `;
+}
+
+/** Render all video cards into the grid */
+function renderVideos() {
+  const grid = document.querySelector('.video-grid');
+  grid.innerHTML = mockVideos.map(createVideoCard).join('');
+}
 
 function init() {
-  // Initialization (to be implemented)
+  renderVideos();
 }
 
 document.addEventListener('DOMContentLoaded', init);
