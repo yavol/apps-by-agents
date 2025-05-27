@@ -1,0 +1,1 @@
+// JavaScript placeholder for Water Reminder App
