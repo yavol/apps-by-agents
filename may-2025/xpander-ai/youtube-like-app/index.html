@@ -7,7 +7,25 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="app"></div>
+  <div class="app-container">
+    <header class="header">
+      <div class="logo">YouTube Clone</div>
+      <input type="text" class="search-input" placeholder="Search videos...">
+    </header>
+    <div class="content">
+      <nav class="sidebar">
+        <ul>
+          <li class="active">Home</li>
+          <li>Trending</li>
+          <li>Subscriptions</li>
+          <li>Library</li>
+        </ul>
+      </nav>
+      <main class="main-content">
+        <div class="video-grid"></div>
+      </main>
+    </div>
+  </div>
   <script src="app.js"></script>
 </body>
 </html>
