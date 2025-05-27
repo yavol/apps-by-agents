@@ -1,3 +1,22 @@
+.search-input::placeholder {
+  color: #888;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .search-input {
+    width: 150px;
+  }
+  .content {
+    flex-direction: column;
+  }
+  .sidebar {
+    display: none;
+  }
+  .video-grid {
+    grid-template-columns: 1fr;
+  }
+}
 /* Base styles */
 *, *::before, *::after {
   box-sizing: border-box;
