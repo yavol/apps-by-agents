@@ -104,6 +104,7 @@ body {
   height: 450px;
 }
 
+/* Player close button */
 .close-button {
   position: absolute;
   top: 10px;
@@ -111,4 +112,47 @@ body {
   font-size: 2rem;
   color: #fff;
   cursor: pointer;
+}
+
+/* Style enhancements for modern look */
+.video-card {
+  background-color: #fff;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.video-card:hover {
+  transform: scale(1.04);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.video-card img {
+  width: 100%;
+  display: block;
+}
+
+.video-info {
+  padding: 10px;
+}
+
+.video-title {
+  font-size: 1rem;
+  margin-bottom: 4px;
+  color: #000;
+}
+
+.search-input {
+  width: 300px;
+  max-width: 100%;
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: none;
+  outline: none;
+}
+
+.search-input::placeholder {
+  color: #888;
 }
