@@ -2,7 +2,6 @@
   color: #888;
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
   .search-input {
     width: 150px;
@@ -17,7 +16,6 @@
     grid-template-columns: 1fr;
   }
 }
-/* Base styles */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -25,7 +23,6 @@
 
 }
 
-/* Layout: header, sidebar, and video grid */
 .app-container {
   display: flex;
   flex-direction: column;
@@ -94,7 +91,6 @@ body {
   color: #333;
 }
 
-/* Modal player styles */
 .modal {
   position: fixed;
   top: 0;
@@ -123,7 +119,6 @@ body {
   height: 450px;
 }
 
-/* Player close button */
 .close-button {
   position: absolute;
   top: 10px;
@@ -133,7 +128,6 @@ body {
   cursor: pointer;
 }
 
-/* Style enhancements for modern look */
 .video-card {
   background-color: #fff;
   border-radius: 4px;

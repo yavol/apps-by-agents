@@ -1,4 +1,3 @@
-// Mock video data
 const mockVideos = [
   {
     id: 'dQw4w9WgXcQ',
@@ -29,7 +28,6 @@ const mockVideos = [
   }
 ];
 
-/** Create HTML for a single video card */
 function createVideoCard(video) {
   return `
     <div class="video-card">
@@ -43,7 +41,6 @@ function createVideoCard(video) {
   `;
 }
 
-/** Render all video cards into the grid */
 function renderVideos() {
   const grid = document.querySelector('.video-grid');
   grid.innerHTML = mockVideos.map(createVideoCard).join('');
