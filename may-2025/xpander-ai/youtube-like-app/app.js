@@ -28,7 +28,6 @@ const mockVideos = [
     videoUrl: 'https://www.youtube.com/embed/3JZ_D3ELwOQ'
   }
 ];
-];
 
 /** Create HTML for a single video card */
 function createVideoCard(video) {
@@ -50,8 +49,27 @@ function renderVideos() {
   grid.innerHTML = mockVideos.map(createVideoCard).join('');
 }
 
+function setupEventListeners() {
+  const modal = document.getElementById('player-modal');
+  const player = document.getElementById('video-player');
+  const closeBtn = document.querySelector('.close-button');
+
+  document.querySelectorAll('.video-card').forEach((card, idx) => {
+    card.addEventListener('click', () => {
+      player.src = mockVideos[idx].videoUrl;
+      modal.classList.add('open');
+    });
+  });
+
+  closeBtn.addEventListener('click', () => {
+    modal.classList.remove('open');
+    player.src = '';
+  });
+}
+
 function init() {
   renderVideos();
+  setupEventListeners();
 }
 
 document.addEventListener('DOMContentLoaded', init);
