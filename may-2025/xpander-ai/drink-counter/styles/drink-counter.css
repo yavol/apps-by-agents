@@ -1,0 +1,43 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f5f5f5;
+}
+
+#root {
+  width: 100%;
+  max-width: 600px;
+  padding: 16px;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 16px;
+}
+
+.counter button {
+  width: 100%;
+  padding: 16px;
+  font-size: 18px;
+  border: none;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.counter button:active {
+  background-color: #e0e0e0;
+}
+
+.counts {
+  margin-top: 8px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+}
