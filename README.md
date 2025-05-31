@@ -4,7 +4,7 @@
 
 <p align="center">
   <a href="https://apps-by-agents.xpander.me/">Homepage</a> • 
-  <a href="https://apps-by-agents.xpander.me/projects.html">Projects Index</a>
+  <a href="https://apps-by-agents.xpander.me/projects.html">View agent-generated apps here</a>
 </p>
 
 <h1 align="center">🤖 Apps by Agents</h1>
