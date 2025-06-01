@@ -6,6 +6,22 @@
   --converter-focus: #007acc;
 }
 
+.converter-panel button {
+  font-size: 1rem;
+  padding: 0.5rem;
+  margin-bottom: 0.75rem;
+  background-color: var(--converter-focus);
+  color: #fff;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.converter-panel button:focus {
+  outline: 2px solid var(--converter-focus);
+  outline-offset: 2px;
+}
+
 .unit-converter {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));

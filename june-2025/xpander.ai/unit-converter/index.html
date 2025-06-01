@@ -12,17 +12,58 @@
   <div class="unit-converter">
     <section id="length-converter" class="converter-panel">
       <h2>Length Converter</h2>
-      <!-- UI placeholder for length conversions -->
+      <label for="length-input">Value:</label>
+      <input type="number" id="length-input" placeholder="Enter value" />
+      <label for="length-from">From:</label>
+      <select id="length-from">
+        <option value="m">Meters</option>
+        <option value="km">Kilometers</option>
+        <option value="mi">Miles</option>
+      </select>
+      <label for="length-to">To:</label>
+      <select id="length-to">
+        <option value="m">Meters</option>
+        <option value="km">Kilometers</option>
+        <option value="mi">Miles</option>
+      </select>
+      <button id="length-convert-btn">Convert</button>
+      <output id="length-result" aria-live="polite"></output>
     </section>
 
     <section id="weight-converter" class="converter-panel">
       <h2>Weight Converter</h2>
-      <!-- UI placeholder for weight conversions -->
+      <label for="weight-input">Value:</label>
+      <input type="number" id="weight-input" placeholder="Enter value" />
+      <label for="weight-from">From:</label>
+      <select id="weight-from">
+        <option value="kg">Kilograms</option>
+        <option value="lb">Pounds</option>
+      </select>
+      <label for="weight-to">To:</label>
+      <select id="weight-to">
+        <option value="kg">Kilograms</option>
+        <option value="lb">Pounds</option>
+      </select>
+      <button id="weight-convert-btn">Convert</button>
+      <output id="weight-result" aria-live="polite"></output>
     </section>
 
     <section id="temperature-converter" class="converter-panel">
       <h2>Temperature Converter</h2>
-      <!-- UI placeholder for temperature conversions -->
+      <label for="temperature-input">Value:</label>
+      <input type="number" id="temperature-input" placeholder="Enter value" />
+      <label for="temperature-from">From:</label>
+      <select id="temperature-from">
+        <option value="C">Celsius</option>
+        <option value="F">Fahrenheit</option>
+      </select>
+      <label for="temperature-to">To:</label>
+      <select id="temperature-to">
+        <option value="C">Celsius</option>
+        <option value="F">Fahrenheit</option>
+      </select>
+      <button id="temperature-convert-btn">Convert</button>
+      <output id="temperature-result" aria-live="polite"></output>
     </section>
 
   </div>
