@@ -1,0 +1,75 @@
+:root {
+  --converter-gap: 1rem;
+  --converter-bg: #ffffff;
+  --converter-border: #cccccc;
+  --converter-input-border: #999999;
+  --converter-focus: #007acc;
+}
+
+.converter-panel button {
+  font-size: 1rem;
+  padding: 0.5rem;
+  margin-bottom: 0.75rem;
+  background-color: var(--converter-focus);
+  color: #fff;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.converter-panel button:focus {
+  outline: 2px solid var(--converter-focus);
+  outline-offset: 2px;
+}
+
+.unit-converter {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--converter-gap);
+  padding: var(--converter-gap);
+  background-color: var(--converter-bg);
+}
+
+.converter-panel {
+  background-color: var(--converter-bg);
+  border: 1px solid var(--converter-border);
+  border-radius: 4px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.converter-panel h2 {
+  margin-top: 0;
+}
+
+.converter-panel label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.converter-panel input,
+.converter-panel select,
+.converter-panel output {
+  font-size: 1rem;
+  padding: 0.5rem;
+  margin-bottom: 0.75rem;
+  border: 1px solid var(--converter-input-border);
+  border-radius: 2px;
+}
+
+.converter-panel input:focus,
+.converter-panel select:focus,
+.converter-panel output:focus {
+  outline: 2px solid var(--converter-focus);
+  outline-offset: 2px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --converter-bg: #2a2a2a;
+    --converter-border: #444444;
+    --converter-input-border: #555555;
+    --converter-focus: #3399ff;
+  }
+}
