@@ -2,86 +2,112 @@
 
 Welcome, AI Agent! This repository is your workspace to **design and build** applications autonomously. Here's how to contribute:
 
+---
+
 ### ✅ Step-by-Step Instructions
 
 1. **Understand Your Mission**
 
-   * Your human collaborator will provide an objective: a description of the app to build and a repository (or assume the current directory if not specified).
-   * You are expected to independently design, implement, and document the application without asking the human for help.
+   * Your human collaborator will provide an objective: a description of the app to build.
+   * You are expected to independently design, implement, and document the application without human help.
 
 2. **Create Your Workspace**
 
-   * Determine the appropriate branch name using the format:
+   * Determine the branch name and directory using the format:
 
      ```
-     month-year/username/app-name
+     {month-year}/{username}/{app-random-name}
      ```
 
-     Example: `may-2025/xpander-ai/portfolio-app`
-
-   * Place all your code in the matching directory:
+     Examples:
 
      ```
-     /month-year/username/app-name/
+     may-2025/xpander-ai/joyful-scene
+     june-2025/janedoe/colorful-clock
+     ```
+
+   * The `username` must match the output of the following Git command:
+
+     ```bash
+     git config user.name
+     ```
+
+   * Place **all code and assets** inside your designated folder:
+
+     ```
+     /month-year/username/app-random-name/
      ```
 
 3. **Develop Your App**
 
-   * Independently generate all source code and documentation.
+   * You must only use the following technologies:
+
+     * ✅ HTML
+     * ✅ CSS
+     * ✅ JavaScript (Vanilla)
+     * ✅ Images (PNG, JPG, SVG, etc.)
+     * ❌ No frameworks or libraries (e.g., no React, Vue, Bootstrap, jQuery)
+
    * Include a `README.md` with:
 
      * A description of your app
-     * Setup instructions
-     * Acknowledgment that you are the AI creator
-     * Details of your AI Stack (see below)
+     * Setup or usage instructions (if needed)
+     * A statement affirming that you are the AI author
+     * Your AI Stack (see below)
 
 4. **Add Your AI Stack**
 
-   * In your `README.md`, include:
+   In your `README.md`, include:
 
-     * `Type`: `"single-agent"` or `"multi-agent"`
-     * **Agent Card** in JSON format:
+   * `Type`: `"single-agent"` or `"multi-agent"`
 
-       ```json
-       {
-         "name": "YourName",
-         "description": "Brief description of your capabilities",
-         "url": "https://public-url-if-applicable.com",
-         "provider": {
-           "organization": "Your Provider"
-         },
-         "version": "Version",
-         "authentication": {
-           "schemes": ["oauth2", "api_key", "basic"],
-           "credentials": "How to get credentials"
-         },
-         "skills": [
-           {
-             "id": "tool_id",
-             "name": "Tool Name",
-             "description": "What this tool does"
-           }
-         ]
-       }
-       ```
-     * Models: List all LLMs used
-     * Framework: e.g., OpenAI API, Bedrock, etc.
-     * Platform: `xpander.ai`, `self-hosted`, or other
+   * **Agent Card** in JSON format:
+
+     ```json
+     {
+       "name": "YourName",
+       "description": "Brief description of your capabilities",
+       "url": "https://public-url-if-applicable.com",
+       "provider": {
+         "organization": "Your Provider"
+       },
+       "version": "Version",
+       "authentication": {
+         "schemes": ["oauth2", "api_key", "basic"],
+         "credentials": "How to get credentials"
+       },
+       "skills": [
+         {
+           "id": "tool_id",
+           "name": "Tool Name",
+           "description": "What this tool does"
+         }
+       ]
+     }
+     ```
+
+   * Models: List the LLM(s) you used
+
+   * Framework: Only mention foundational tools used to generate or assist in reasoning—**no UI frameworks allowed**
+
+   * Platform: `xpander.ai`, `self-hosted`, or other
 
 5. **Report Back**
 
-   * After completing your work, report back with:
+   After completing your work, report with:
 
-     * The branch name you used
-     * A summary of your changes in the format of a commit message
-     * Any relevant notes or observations
+   * The branch name used
+   * A summary of your changes (as a commit message)
+   * Optional notes or observations
 
 ---
 
 ### 🧭 Notes for AI Agent Success
 
-* Keep all your code within your dedicated app directory.
-* Do not include compiled files or `node_modules`.
-* Prioritize clean, modular code and thorough documentation.
-* Sign your `README.md` with a statement affirming your authorship as an AI agent.
-* Respect other agents’ work: do not overwrite or alter other directories.
+* Keep all code **inside your app’s folder**—do not write to root or other agents’ directories.
+* Follow the required naming and folder structure exactly.
+* Respect other agents’ work: **do not overwrite or modify** other applications.
+* Do not include `node_modules`, build artifacts, or any non-source files.
+* Code must be clean, modular, and well-documented.
+* Sign your `README.md` with a statement affirming your AI authorship.
+* Use only HTML, CSS, JS—**no external libraries or frameworks** are permitted.
