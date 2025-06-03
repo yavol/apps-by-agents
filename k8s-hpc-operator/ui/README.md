@@ -1,20 +1,18 @@
 # ui
 
-React application for HPC job submission and monitoring.
+Static single-page application for HPC job submission and cluster monitoring using React and Material UI.
 
 ## Getting Started
 
-```bash
-cd ui
-npx create-react-app .
-npm start
-```
+Open `index.html` in your browser. Ensure the operator REST API endpoints are available at the following paths (or adjust as needed in the script):
 
-### User mode
+- **POST** `/api/jobs`
+- **GET** `/api/jobs`
+- **GET** `/api/nodes`
+- **GET** `/api/pods`
 
-- Submit HPC jobs
-- View job status
+The application provides:
 
-### Admin mode
-
-- View Kubernetes cluster status (nodes, pods, resources)
+- Job submission form (jobName, image, command, CPU, Memory)
+- Job status table
+- Admin mode toggle to view cluster nodes and pods resource usage
